@@ -3,179 +3,677 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AILabs - AI that works. For businesses that do.</title>
+  <title>AILabs — AI that works. For businesses that do.</title>
+  <meta name="description" content="AILabs builds AI agents, business apps and automation for NZ small businesses. Fast, affordable, built to fit." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root { --bg: #08080E; --surface: #0F0F1A; --surface2: #16162A; --border: rgba(255,255,255,0.07); --text: #EEEDF0; --muted: #7B7A8E; --accent: #00E8B0; --font-head: 'Syne', sans-serif; --font-body: 'DM Sans', sans-serif; --font-mono: 'DM Mono', monospace; }
-    html { scroll-behavior: smooth; }
-    body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 1rem; line-height: 1.65; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
-    .wrap { max-width: 1080px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 1; }
-    section { padding: 6rem 0; }
-    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.25rem 2rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); backdrop-filter: blur(20px); background: rgba(8,8,14,0.85); }
-    .nav-logo { font-family: var(--font-head); font-weight: 800; font-size: 1.2rem; letter-spacing: -0.02em; color: var(--text); text-decoration: none; }
-    .nav-logo span { color: var(--accent); }
-    nav a.nav-cta { font-family: var(--font-mono); font-size: 0.78rem; color: var(--accent); text-decoration: none; border: 1px solid var(--accent); padding: 0.45rem 1rem; border-radius: 4px; transition: background 0.2s, color 0.2s; }
-    #hero { min-height: 100vh; display: flex; align-items: center; padding-top: 5rem; position: relative; overflow: hidden; }
-    .hero-glow { position: absolute; top: 10%; left: 50%; transform: translateX(-50%); width: 600px; height: 600px; background: radial-gradient(circle, rgba(0,232,176,0.08) 0%, transparent 70%); pointer-events: none; }
-    .hero-inner { max-width: 780px; }
-    .hero-label { font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 1.5rem; opacity: 0; animation: fadeUp 0.6s ease forwards 0.1s; }
-    h1 { font-family: var(--font-head); font-size: clamp(2.8rem, 7vw, 5.5rem); font-weight: 800; line-height: 1.02; letter-spacing: -0.03em; margin-bottom: 1.75rem; opacity: 0; animation: fadeUp 0.7s ease forwards 0.2s; }
-    h1 em { font-style: normal; color: var(--accent); }
-    .hero-sub { font-size: 1.15rem; color: var(--muted); max-width: 520px; margin-bottom: 2.5rem; font-weight: 300; opacity: 0; animation: fadeUp 0.7s ease forwards 0.35s; }
-    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; opacity: 0; animation: fadeUp 0.7s ease forwards 0.5s; }
-    .btn-primary { display: inline-block; background: var(--accent); color: var(--bg); font-family: var(--font-head); font-weight: 700; font-size: 0.95rem; padding: 0.9rem 2rem; border-radius: 4px; text-decoration: none; transition: transform 0.15s, box-shadow 0.15s; }
-    .btn-ghost { display: inline-block; color: var(--muted); font-family: var(--font-body); font-size: 0.95rem; padding: 0.9rem 1.5rem; text-decoration: none; border: 1px solid var(--border); border-radius: 4px; }
-    .section-label { font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem; }
-    .section-label::after { content: ''; display: block; height: 1px; width: 40px; background: var(--accent); opacity: 0.4; }
-    #problem, #services, #how, #why, #work, #cta { border-top: 1px solid var(--border); }
-    #problem h2 { font-family: var(--font-head); font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; max-width: 680px; margin-bottom: 1.5rem; }
-    #problem p { color: var(--muted); max-width: 540px; font-size: 1.05rem; font-weight: 300; }
-    #problem p strong { color: var(--text); font-weight: 500; }
-    #services h2, #how h2, #why h2, #work h2 { font-family: var(--font-head); font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700; letter-spacing: -0.03em; margin-bottom: 3rem; }
-    #why h2, #work h2 { margin-bottom: 0.75rem; }
-    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1px; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
-    .service-card { background: var(--surface); padding: 2rem; transition: background 0.2s; }
-    .service-card:hover { background: var(--surface2); }
-    .service-icon { font-size: 1.5rem; margin-bottom: 1rem; }
-    .service-card h3 { font-family: var(--font-head); font-size: 1.05rem; font-weight: 700; margin-bottom: 0.6rem; }
-    .service-card p { font-size: 0.9rem; color: var(--muted); line-height: 1.6; font-weight: 300; }
-    .step { display: grid; grid-template-columns: 3rem 1fr; gap: 1.5rem; padding: 2rem 0; border-bottom: 1px solid var(--border); align-items: start; }
-    .step:last-child { border-bottom: none; }
-    .step-num { font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent); padding-top: 0.2rem; }
-    .step h3 { font-family: var(--font-head); font-size: 1.15rem; font-weight: 700; margin-bottom: 0.4rem; }
-    .step p { color: var(--muted); font-size: 0.95rem; font-weight: 300; }
-    #why > .wrap > p, #work > .wrap > p { color: var(--muted); font-size: 1.05rem; max-width: 540px; margin-bottom: 3rem; font-weight: 300; }
-    .reasons { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
-    .reason { display: flex; gap: 1rem; align-items: flex-start; }
-    .reason-dot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; margin-top: 0.55rem; flex-shrink: 0; }
-    .reason p { font-size: 0.95rem; color: var(--muted); font-weight: 300; }
-    .reason p strong { color: var(--text); font-weight: 500; display: block; margin-bottom: 0.2rem; font-family: var(--font-head); font-size: 1rem; }
-    .work-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
-    .work-card { display: block; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 2rem; text-decoration: none; color: var(--text); transition: background 0.2s, border-color 0.2s, transform 0.2s; }
-    .work-card:hover { background: var(--surface2); border-color: rgba(0,232,176,0.2); transform: translateY(-3px); }
-    .work-meta { margin-bottom: 1rem; }
-    .work-tag { font-family: var(--font-mono); font-size: 0.68rem; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; border: 1px solid rgba(0,232,176,0.25); padding: 0.2rem 0.6rem; border-radius: 3px; }
-    .work-card h3 { font-family: var(--font-head); font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem; }
-    .work-card p { font-size: 0.9rem; color: var(--muted); font-weight: 300; margin-bottom: 1.5rem; line-height: 1.6; }
-    .work-link { font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent); }
-    #cta { text-align: center; }
-    #cta h2 { font-family: var(--font-head); font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.05; margin-bottom: 1rem; }
-    #cta h2 em { font-style: normal; color: var(--accent); }
-    #cta p { color: var(--muted); margin-bottom: 2.5rem; font-size: 1.05rem; font-weight: 300; }
-    .cta-note { font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted); margin-top: 1.25rem; }
-    footer { border-top: 1px solid var(--border); padding: 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; position: relative; z-index: 1; }
-    .footer-logo { font-family: var(--font-head); font-weight: 800; font-size: 1rem; color: var(--muted); text-decoration: none; }
-    .footer-logo span { color: var(--accent); }
-    footer p { font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted); }
-    @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
-    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    :root {
+      --ink: #0e0f0c;
+      --ink-soft: #454745;
+      --ink-dim: #868685;
+      --bg: #f7f8f4;
+      --surface: #ffffff;
+      --green: #9fe870;
+      --green-dark: #163300;
+      --green-hover: #cdffad;
+      --mint: #e2f6d5;
+      --light: #e8ebe6;
+      --border: rgba(14,15,12,0.12);
+      --ring: 0 0 0 1px rgba(14,15,12,0.12);
+      --display: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+      --body: 'Inter', 'Helvetica', Arial, sans-serif;
+      --mono: 'JetBrains Mono', ui-monospace, monospace;
+    }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--body);
+      font-weight: 500;
+      font-size: 1.0625rem;
+      line-height: 1.5;
+      font-feature-settings: "calt" 1, "ss01" 1;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    ::selection { background: var(--green); color: var(--green-dark); }
+
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 0 1.75rem; }
+    section { padding: 7rem 0; position: relative; }
+
+    /* ---------- Nav ---------- */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1rem 1.75rem;
+      background: rgba(247,248,244,0.82);
+      backdrop-filter: saturate(140%) blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+    .logo {
+      font-family: var(--display);
+      font-weight: 900;
+      font-size: 1.4rem;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      text-decoration: none;
+      color: var(--ink);
+      display: inline-flex; align-items: baseline; gap: 0.1rem;
+    }
+    .logo-dot { width: 0.45rem; height: 0.45rem; background: var(--green); border-radius: 9999px; display: inline-block; }
+    .nav-links { display: none; gap: 2rem; }
+    .nav-links a { color: var(--ink); text-decoration: none; font-size: 0.95rem; font-weight: 600; }
+    .nav-links a:hover { color: var(--green-dark); }
+    @media (min-width: 860px) { .nav-links { display: flex; } }
+
+    /* ---------- Buttons ---------- */
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.55rem;
+      font-family: var(--body);
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0.9rem 1.6rem;
+      border-radius: 9999px;
+      border: 0;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.18s ease, background 0.2s ease;
+      will-change: transform;
+    }
+    .btn-primary { background: var(--green); color: var(--green-dark); }
+    .btn-primary:hover { transform: scale(1.05); background: var(--green-hover); }
+    .btn-primary:active { transform: scale(0.96); }
+    .btn-secondary {
+      background: rgba(22, 51, 0, 0.08);
+      color: var(--ink);
+    }
+    .btn-secondary:hover { transform: scale(1.05); background: rgba(22,51,0,0.12); }
+    .btn-secondary:active { transform: scale(0.96); }
+    .btn-dark { background: var(--ink); color: var(--bg); }
+    .btn-dark:hover { transform: scale(1.05); background: #1c1d1a; }
+    .btn-dark:active { transform: scale(0.96); }
+    .btn .arrow { display: inline-block; transition: transform 0.2s ease; }
+    .btn:hover .arrow { transform: translateX(3px); }
+
+    /* ---------- Labels / eyebrows ---------- */
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--ink-soft);
+      padding: 0.45rem 0.85rem;
+      border-radius: 9999px;
+      background: var(--mint);
+    }
+    .eyebrow::before {
+      content: ''; width: 0.45rem; height: 0.45rem; border-radius: 9999px; background: var(--green-dark);
+    }
+
+    /* ---------- Display type ---------- */
+    h1, h2, h3 { font-family: var(--display); color: var(--ink); }
+    .display {
+      font-family: var(--display);
+      font-weight: 900;
+      line-height: 0.85;
+      letter-spacing: -0.02em;
+      text-transform: none;
+    }
+    h1.display { font-size: clamp(3.8rem, 11vw, 9rem); }
+    h2.display { font-size: clamp(2.6rem, 7vw, 5.2rem); }
+    h3.display { font-size: clamp(1.6rem, 3vw, 2.2rem); }
+    .alt-head { font-family: var(--body); font-weight: 600; font-size: clamp(1.15rem, 1.6vw, 1.35rem); line-height: 1.4; color: var(--ink-soft); max-width: 56ch; }
+
+    /* ---------- Hero ---------- */
+    #hero { padding: 6rem 0 8rem; position: relative; overflow: hidden; }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      align-items: end;
+    }
+    @media (min-width: 960px) { .hero-grid { grid-template-columns: 1.35fr 1fr; gap: 4rem; } }
+    .hero-head .eyebrow { margin-bottom: 2rem; }
+    .hero-head h1 span.mark {
+      background: var(--green);
+      padding: 0 0.12em 0.06em;
+      border-radius: 0.12em;
+      box-decoration-break: clone;
+      -webkit-box-decoration-break: clone;
+    }
+    .hero-head .hero-sub { margin: 2rem 0 2.5rem; }
+    .hero-cta-row { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+    .hero-aside {
+      border: 1px solid var(--border);
+      background: var(--surface);
+      border-radius: 30px;
+      padding: 1.75rem;
+      box-shadow: var(--ring);
+    }
+    .hero-aside .stat-big {
+      font-family: var(--display);
+      font-weight: 900;
+      font-size: clamp(3rem, 6vw, 4.5rem);
+      line-height: 0.85;
+      letter-spacing: -0.02em;
+      color: var(--green-dark);
+    }
+    .hero-aside .stat-big em { font-style: normal; color: var(--ink); }
+    .hero-aside p { color: var(--ink-soft); font-size: 0.95rem; margin-top: 1rem; }
+    .hero-aside .chips { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1.25rem; }
+    .chip {
+      font-family: var(--mono); font-size: 0.72rem; font-weight: 500;
+      padding: 0.35rem 0.75rem; border-radius: 9999px;
+      background: var(--mint); color: var(--green-dark);
+    }
+
+    /* decorative floating token */
+    .float-token {
+      position: absolute; right: -4rem; top: 10%;
+      width: 18rem; height: 18rem;
+      background: radial-gradient(circle at 30% 30%, var(--green) 0%, var(--mint) 55%, transparent 72%);
+      filter: blur(10px);
+      opacity: 0.55;
+      pointer-events: none;
+      animation: drift 14s ease-in-out infinite;
+    }
+    @keyframes drift { 0%,100% { transform: translate(0,0); } 50% { transform: translate(-20px, 18px); } }
+
+    /* ---------- Marquee ---------- */
+    .marquee {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: var(--ink);
+      color: var(--bg);
+      overflow: hidden;
+      padding: 1.3rem 0;
+    }
+    .marquee-track {
+      display: flex; gap: 3.5rem;
+      white-space: nowrap;
+      animation: scroll 40s linear infinite;
+      font-family: var(--display);
+      font-weight: 900;
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+    .marquee-track span { display: inline-flex; align-items: center; gap: 3.5rem; }
+    .marquee-track .dot { width: 0.55rem; height: 0.55rem; background: var(--green); border-radius: 9999px; }
+    @keyframes scroll { from { transform: translateX(0);} to { transform: translateX(-50%);} }
+
+    /* ---------- Section head ---------- */
+    .section-head { display: grid; gap: 1.25rem; margin-bottom: 3.5rem; }
+    .section-head .alt-head { margin-top: 0.5rem; }
+
+    /* ---------- Services ---------- */
+    .services-grid { display: grid; grid-template-columns: 1fr; gap: 1.25rem; }
+    @media (min-width: 720px) { .services-grid { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 1080px) { .services-grid { grid-template-columns: repeat(4, 1fr); } }
+    .service {
+      background: var(--surface);
+      border-radius: 30px;
+      padding: 2rem 1.75rem;
+      box-shadow: var(--ring);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      min-height: 17rem;
+      display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .service:hover { transform: translateY(-4px); box-shadow: 0 0 0 1px var(--green-dark), 0 18px 40px -28px rgba(14,15,12,0.35); }
+    .service .num { font-family: var(--mono); font-size: 0.75rem; color: var(--ink-dim); }
+    .service h3 { font-family: var(--body); font-weight: 600; font-size: 1.35rem; line-height: 1.18; letter-spacing: -0.015em; margin: 1rem 0 0.6rem; }
+    .service p { color: var(--ink-soft); font-size: 0.95rem; font-weight: 500; }
+    .service .glyph {
+      width: 2.4rem; height: 2.4rem; border-radius: 9999px;
+      background: var(--mint); color: var(--green-dark);
+      display: grid; place-items: center; font-family: var(--display); font-weight: 900; font-size: 1.1rem;
+    }
+
+    /* ---------- Calculator ---------- */
+    #calc { background: var(--ink); color: var(--bg); border-radius: 40px; margin: 2rem 1.75rem; padding: 5rem 2rem; }
+    @media (min-width: 960px) { #calc { margin: 2rem auto; max-width: 1200px; padding: 6rem 4rem; } }
+    #calc .eyebrow { background: rgba(159,232,112,0.15); color: var(--green); }
+    #calc .eyebrow::before { background: var(--green); }
+    #calc h2.display { color: var(--bg); }
+    #calc .alt-head { color: rgba(247,248,244,0.75); }
+
+    .calc-grid {
+      display: grid; grid-template-columns: 1fr; gap: 2.5rem; margin-top: 3rem;
+    }
+    @media (min-width: 900px) { .calc-grid { grid-template-columns: 1fr 1fr; gap: 3rem; align-items: stretch; } }
+    .calc-form, .calc-result {
+      background: #1a1b17;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 30px;
+      padding: 2rem;
+    }
+    .calc-form label {
+      display: block;
+      font-family: var(--mono); font-size: 0.72rem;
+      text-transform: uppercase; letter-spacing: 0.14em;
+      color: rgba(247,248,244,0.6);
+      margin: 1.25rem 0 0.55rem;
+    }
+    .calc-form label:first-child { margin-top: 0; }
+    .calc-form input, .calc-form select {
+      width: 100%;
+      background: #0e0f0c;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 14px;
+      padding: 0.95rem 1.1rem;
+      color: var(--bg);
+      font-family: var(--body);
+      font-size: 1rem;
+      font-weight: 500;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .calc-form input:focus, .calc-form select:focus {
+      outline: none;
+      border-color: var(--green);
+      box-shadow: 0 0 0 3px rgba(159,232,112,0.25);
+    }
+    .calc-row { display: grid; grid-template-columns: 2fr 1fr; gap: 0.75rem; }
+    .calc-form .hint { font-size: 0.82rem; color: rgba(247,248,244,0.5); margin-top: 0.5rem; font-weight: 500; }
+
+    .calc-result { display: flex; flex-direction: column; justify-content: space-between; gap: 1.5rem; }
+    .result-lead { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--green); }
+    .result-big {
+      font-family: var(--display); font-weight: 900;
+      font-size: clamp(3rem, 6vw, 4.8rem);
+      line-height: 0.85;
+      letter-spacing: -0.02em;
+      color: var(--green);
+    }
+    .result-big small { display: block; font-size: 0.9rem; font-weight: 500; font-family: var(--body); color: rgba(247,248,244,0.6); letter-spacing: 0; margin-top: 0.6rem; }
+    .result-rows { display: grid; gap: 0.75rem; padding-top: 1.25rem; border-top: 1px dashed rgba(255,255,255,0.15); }
+    .result-row { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; font-size: 0.95rem; }
+    .result-row span:first-child { color: rgba(247,248,244,0.6); }
+    .result-row span:last-child { color: var(--bg); font-weight: 600; font-variant-numeric: tabular-nums; }
+    .result-row.accent span:last-child { color: var(--green); }
+    .result-cta { margin-top: 0.5rem; }
+    .result-empty { color: rgba(247,248,244,0.5); font-size: 0.95rem; font-style: italic; }
+    .pricing-note {
+      margin-top: 1.5rem;
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      color: rgba(247,248,244,0.45);
+      text-transform: uppercase;
+    }
+
+    /* ---------- Steps ---------- */
+    .steps { display: grid; gap: 0; }
+    .step {
+      display: grid; grid-template-columns: 5rem 1fr; gap: 2rem;
+      padding: 2.25rem 0;
+      border-top: 1px solid var(--border);
+      align-items: start;
+    }
+    .step:last-child { border-bottom: 1px solid var(--border); }
+    .step-num { font-family: var(--display); font-weight: 900; font-size: 2.4rem; line-height: 0.85; color: var(--green-dark); }
+    .step h3 { font-family: var(--body); font-weight: 600; font-size: 1.45rem; letter-spacing: -0.015em; margin-bottom: 0.45rem; }
+    .step p { color: var(--ink-soft); max-width: 60ch; font-size: 1rem; }
+
+    /* ---------- Why ---------- */
+    #why { background: var(--mint); border-radius: 40px; margin: 2rem 1.75rem; }
+    @media (min-width: 960px) { #why { margin: 2rem auto; max-width: 1200px; } }
+    .reasons { display: grid; grid-template-columns: 1fr; gap: 1rem; margin-top: 3rem; }
+    @media (min-width: 720px) { .reasons { grid-template-columns: 1fr 1fr; } }
+    .reason {
+      background: var(--surface);
+      border-radius: 24px;
+      padding: 1.75rem;
+      box-shadow: var(--ring);
+    }
+    .reason h3 { font-family: var(--body); font-weight: 600; font-size: 1.2rem; letter-spacing: -0.01em; margin-bottom: 0.5rem; }
+    .reason p { color: var(--ink-soft); font-size: 0.95rem; }
+
+    /* ---------- Work ---------- */
+    .work-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+    @media (min-width: 800px) { .work-grid { grid-template-columns: repeat(3, 1fr); } }
+    .work-card {
+      background: var(--surface);
+      border-radius: 30px;
+      padding: 2rem;
+      box-shadow: var(--ring);
+      text-decoration: none;
+      color: var(--ink);
+      display: flex; flex-direction: column; gap: 1rem;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      min-height: 17rem;
+    }
+    .work-card:hover { transform: translateY(-4px); box-shadow: 0 0 0 1px var(--green-dark), 0 18px 40px -28px rgba(14,15,12,0.35); }
+    .work-card .tag {
+      font-family: var(--mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em;
+      padding: 0.35rem 0.7rem; border-radius: 9999px; background: var(--mint); color: var(--green-dark);
+      align-self: flex-start;
+    }
+    .work-card h3 { font-family: var(--body); font-weight: 600; font-size: 1.35rem; letter-spacing: -0.015em; }
+    .work-card p { color: var(--ink-soft); font-size: 0.95rem; flex: 1; }
+    .work-card .link { font-weight: 600; color: var(--green-dark); display: inline-flex; align-items: center; gap: 0.4rem; }
+
+    /* ---------- CTA ---------- */
+    #cta {
+      background: var(--green);
+      border-radius: 40px;
+      margin: 2rem 1.75rem;
+      text-align: center;
+      padding: 7rem 1.75rem;
+    }
+    @media (min-width: 960px) { #cta { margin: 2rem auto; max-width: 1200px; } }
+    #cta h2.display { color: var(--green-dark); }
+    #cta .alt-head { color: rgba(22,51,0,0.8); margin: 1.5rem auto 2.5rem; }
+
+    /* ---------- Footer ---------- */
+    footer {
+      padding: 3rem 1.75rem 2.5rem;
+      border-top: 1px solid var(--border);
+      display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem;
+      font-family: var(--mono); font-size: 0.78rem; color: var(--ink-soft);
+    }
+    footer .logo { font-size: 1.1rem; }
+
+    /* ---------- Reveal ---------- */
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.7s ease, transform 0.7s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
-    @media (max-width: 600px) { section { padding: 4rem 0; } .hero-actions { flex-direction: column; } }
+
+    @media (max-width: 560px) {
+      section { padding: 5rem 0; }
+      .hero-cta-row .btn { width: 100%; justify-content: center; }
+      .calc-row { grid-template-columns: 1fr; }
+      #cta { padding: 5rem 1.5rem; }
+    }
   </style>
 </head>
 <body>
-  <nav>
-    <a href="#" class="nav-logo">AI<span>Labs</span></a>
-    <a href="#cta" class="nav-cta">Book a call</a>
-  </nav>
-  <section id="hero">
-    <div class="hero-glow"></div>
-    <div class="wrap">
-      <div class="hero-inner">
-        <div class="hero-label">Christchurch, New Zealand</div>
-        <h1>AI that works.<br><em>For businesses</em><br>that do.</h1>
-        <p class="hero-sub">You are losing hours to tasks AI should be handling. AILabs builds the tools that fix that - fast, affordable, and built for your business.</p>
-        <div class="hero-actions">
-          <a href="#cta" class="btn-primary">Book a free call</a>
-          <a href="#services" class="btn-ghost">See what we build</a>
+
+<nav>
+  <a href="#" class="logo">AILabs<span class="logo-dot" aria-hidden="true"></span></a>
+  <div class="nav-links">
+    <a href="#services">What we build</a>
+    <a href="#calc">Savings calculator</a>
+    <a href="#work">Work</a>
+    <a href="#why">Why us</a>
+  </div>
+  <a href="#cta" class="btn btn-primary">Book a call <span class="arrow">→</span></a>
+</nav>
+
+<section id="hero">
+  <div class="float-token" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-head">
+        <span class="eyebrow">Christchurch · Aotearoa NZ</span>
+        <h1 class="display">AI that <span class="mark">works.</span><br>For businesses<br>that do.</h1>
+        <p class="alt-head hero-sub">You're losing hours to tasks AI should be handling. We build the agents, apps and automations that quietly do the work — fast, affordable, and built to fit your business.</p>
+        <div class="hero-cta-row">
+          <a href="#calc" class="btn btn-primary">See your savings <span class="arrow">→</span></a>
+          <a href="#services" class="btn btn-secondary">What we build</a>
+        </div>
+      </div>
+      <aside class="hero-aside" aria-label="What we ship">
+        <div class="stat-big">10&times;<em> faster.</em></div>
+        <p>We use AI to build, so projects ship in days — not the six-week account-manager marathon you were quoted.</p>
+        <div class="chips">
+          <span class="chip">AI Agents</span>
+          <span class="chip">Business Apps</span>
+          <span class="chip">Automation</span>
+          <span class="chip">Strategy</span>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Stop doing it the hard way <i class="dot"></i> Ship in days, not months <i class="dot"></i> Built in NZ for NZ SMBs <i class="dot"></i> Automate the boring parts <i class="dot"></i></span>
+    <span>Stop doing it the hard way <i class="dot"></i> Ship in days, not months <i class="dot"></i> Built in NZ for NZ SMBs <i class="dot"></i> Automate the boring parts <i class="dot"></i></span>
+  </div>
+</div>
+
+<section id="services">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">What we build</span>
+      <h2 class="display">Tools that quietly<br>do the work.</h2>
+      <p class="alt-head">Four shapes of engagement. Pick the one that fits — or we'll tell you which one does.</p>
+    </div>
+    <div class="services-grid">
+      <article class="service reveal">
+        <div>
+          <div class="glyph">◆</div>
+          <h3>AI Agents</h3>
+          <p>Software that thinks on its own — handling tasks, making decisions and sending messages while you get on with the real work.</p>
+        </div>
+        <span class="num">01 / Agent</span>
+      </article>
+      <article class="service reveal">
+        <div>
+          <div class="glyph">▢</div>
+          <h3>Business Apps</h3>
+          <p>Off-the-shelf tools don't fit every business. We build what you actually need — without the agency price tag.</p>
+        </div>
+        <span class="num">02 / App</span>
+      </article>
+      <article class="service reveal">
+        <div>
+          <div class="glyph">↻</div>
+          <h3>Automation</h3>
+          <p>Your systems should talk to each other. We connect them, cut the manual steps, and give you your time back.</p>
+        </div>
+        <span class="num">03 / Flow</span>
+      </article>
+      <article class="service reveal">
+        <div>
+          <div class="glyph">✦</div>
+          <h3>Strategy &amp; Advice</h3>
+          <p>Not sure where to start? We'll look at how your business runs and tell you exactly where AI will help most.</p>
+        </div>
+        <span class="num">04 / Plan</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="calc" aria-labelledby="calc-title">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Time saver calculator</span>
+      <h2 class="display" id="calc-title">How much is<br>that task really<br>costing you?</h2>
+      <p class="alt-head">Tell us what you (or someone on your team) does repeatedly. We'll show you what it costs, what AILabs costs, and when it pays itself back.</p>
+    </div>
+
+    <div class="calc-grid">
+      <form class="calc-form" id="calcForm" onsubmit="return false;">
+        <label for="task">The task</label>
+        <input id="task" type="text" placeholder="e.g. Sending quote follow-ups" autocomplete="off" />
+
+        <label for="time">How long it takes</label>
+        <div class="calc-row">
+          <input id="time" type="number" min="0" step="0.5" placeholder="Hours" inputmode="decimal" />
+          <select id="unit" aria-label="Per">
+            <option value="day">per day</option>
+            <option value="week" selected>per week</option>
+            <option value="month">per month</option>
+          </select>
+        </div>
+
+        <label for="rate">Hourly cost (NZD)</label>
+        <input id="rate" type="number" min="0" step="1" placeholder="e.g. 45" inputmode="decimal" />
+        <p class="hint">Use the fully-loaded rate — salary plus overheads.</p>
+
+        <div style="margin-top:1.75rem; display:flex; gap:0.6rem; flex-wrap:wrap;">
+          <button type="button" class="btn btn-primary" id="calcBtn">Calculate savings <span class="arrow">→</span></button>
+          <button type="button" class="btn btn-secondary" id="calcReset" style="background:rgba(255,255,255,0.08); color:var(--bg);">Reset</button>
+        </div>
+      </form>
+
+      <div class="calc-result" id="calcResult" aria-live="polite">
+        <div>
+          <div class="result-lead">Your first-year savings</div>
+          <div class="result-big" id="savingsBig">$—<small id="savingsSmall">Fill in the form to see the numbers.</small></div>
+        </div>
+        <div class="result-rows" id="resultRows" hidden>
+          <div class="result-row"><span>Hours reclaimed / year</span><span id="rHours">—</span></div>
+          <div class="result-row"><span>Current cost / month</span><span id="rMonthly">—</span></div>
+          <div class="result-row"><span>AILabs year-one cost</span><span id="rAilabs">—</span></div>
+          <div class="result-row accent"><span>Payback period</span><span id="rPayback">—</span></div>
+        </div>
+        <div class="result-cta">
+          <a href="#cta" class="btn btn-primary">Book a call about this <span class="arrow">→</span></a>
+          <div class="pricing-note">Placeholder pricing · $600 upfront · $149 / month</div>
         </div>
       </div>
     </div>
-  </section>
-  <section id="problem">
-    <div class="wrap">
-      <div class="section-label">The problem</div>
-      <h2 class="reveal">Most small businesses know AI could help.<br>Few know where to start.</h2>
-      <p class="reveal">Every week, hours disappear into tasks that do not need a human. Data entry. Follow-ups. Reports. Copying things from one place to another. <strong>We know where the time goes and how to get it back.</strong></p>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">How it works</span>
+      <h2 class="display">Three steps.<br>No drawn-out process.</h2>
     </div>
-  </section>
-  <section id="services">
-    <div class="wrap">
-      <div class="section-label">What we build</div>
-      <h2 class="reveal">Tools that do the work.</h2>
-      <div class="services-grid reveal">
-        <div class="service-card"><div class="service-icon">&#11041;</div><h3>AI Agents</h3><p>Software that works on its own, handling tasks, making decisions, sending messages, while you get on with the real work.</p></div>
-        <div class="service-card"><div class="service-icon">&#9723;</div><h3>Business Apps</h3><p>Off-the-shelf tools do not fit every business. We build what you actually need, without the agency price tag.</p></div>
-        <div class="service-card"><div class="service-icon">&#10227;</div><h3>Automation</h3><p>Your systems should talk to each other. We connect them, cut the manual steps, and give you your time back.</p></div>
-        <div class="service-card"><div class="service-icon">&#9672;</div><h3>Strategy and Advice</h3><p>Not sure where to start? We will look at how your business runs and tell you exactly where AI will help most.</p></div>
-      </div>
+    <div class="steps">
+      <div class="step reveal"><div class="step-num">01</div><div><h3>We talk</h3><p>You show us where time gets lost. We ask the right questions. Free, no pitch, no pressure.</p></div></div>
+      <div class="step reveal"><div class="step-num">02</div><div><h3>We build</h3><p>Fast. Scoped. No bloat. No six-week project plans. We use AI to build, so it costs less and ships sooner.</p></div></div>
+      <div class="step reveal"><div class="step-num">03</div><div><h3>You run it</h3><p>A tool built for your business, that your team can use from day one. We don't move on until it works.</p></div></div>
     </div>
-  </section>
-  <section id="how">
-    <div class="wrap">
-      <div class="section-label">How it works</div>
-      <h2 class="reveal">Three steps.<br>No drawn-out process.</h2>
-      <div class="steps">
-        <div class="step reveal"><div class="step-num">01</div><div><h3>We talk</h3><p>You show us where time gets lost. We ask the right questions. Free, no pitch, no pressure.</p></div></div>
-        <div class="step reveal"><div class="step-num">02</div><div><h3>We build</h3><p>Fast. Scoped. No bloat. No six-week project plans. We use AI to build so it costs less and ships sooner.</p></div></div>
-        <div class="step reveal"><div class="step-num">03</div><div><h3>You run it</h3><p>A tool built for your business, that your team can use from day one. We do not move on until it works.</p></div></div>
-      </div>
+  </div>
+</section>
+
+<section id="why">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Why AILabs</span>
+      <h2 class="display">No strategy decks.<br>No account managers.</h2>
+      <p class="alt-head">Most AI consultants hand you a report and leave. Most dev agencies take months and charge for it. We do neither.</p>
     </div>
-  </section>
-  <section id="why">
-    <div class="wrap">
-      <div class="section-label">Why AILabs</div>
-      <h2 class="reveal">No strategy decks.<br>No account managers.</h2>
-      <p class="reveal">Most AI consultants hand you a report and leave. Most dev agencies take months and charge for it. AILabs is different.</p>
-      <div class="reasons">
-        <div class="reason reveal"><div class="reason-dot"></div><p><strong>Faster and cheaper</strong>We use AI to build, which means less time and less cost than a traditional agency.</p></div>
-        <div class="reason reveal"><div class="reason-dot"></div><p><strong>Direct access</strong>You deal with us directly, no account managers, no handoffs. One team that knows your project inside out.</p></div>
-        <div class="reason reveal"><div class="reason-dot"></div><p><strong>Tech that fits</strong>We understand both the business problem and how to solve it. No generic tools bolted together.</p></div>
-        <div class="reason reveal"><div class="reason-dot"></div><p><strong>NZ-based</strong>Local hours, local context, easy to reach. No offshore delays or communication gaps.</p></div>
-      </div>
+    <div class="reasons">
+      <div class="reason reveal"><h3>Faster &amp; cheaper</h3><p>We use AI to build, which means less time and less cost than a traditional agency.</p></div>
+      <div class="reason reveal"><h3>Direct access</h3><p>You deal with us directly — no account managers, no handoffs. One team that knows your project inside out.</p></div>
+      <div class="reason reveal"><h3>Tech that fits</h3><p>We understand both the business problem and how to solve it. No generic tools bolted together.</p></div>
+      <div class="reason reveal"><h3>NZ-based</h3><p>Local hours, local context, easy to reach. No offshore delays or communication gaps.</p></div>
     </div>
-  </section>
-  <section id="work">
-    <div class="wrap">
-      <div class="section-label">What we have shipped</div>
-      <h2 class="reveal">Built by us.<br>Used by real businesses.</h2>
-      <p class="reveal">A selection of products we have built and deployed. Click through to see each one in action.</p>
-      <div class="work-grid">
-        <a href="#" class="work-card reveal"><div class="work-meta"><span class="work-tag">AI Agent</span></div><h3>Project Name One</h3><p>One line describing what this product does and who it is for.</p><span class="work-link">See it live</span></a>
-        <a href="#" class="work-card reveal"><div class="work-meta"><span class="work-tag">Automation</span></div><h3>Project Name Two</h3><p>One line describing what this product does and who it is for.</p><span class="work-link">See it live</span></a>
-        <a href="#" class="work-card reveal"><div class="work-meta"><span class="work-tag">Business App</span></div><h3>Project Name Three</h3><p>One line describing what this product does and who it is for.</p><span class="work-link">See it live</span></a>
-      </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">What we've shipped</span>
+      <h2 class="display">Built by us.<br>Used by real<br>businesses.</h2>
     </div>
-  </section>
-  <section id="cta">
-    <div class="wrap">
-      <div class="section-label">Get started</div>
-      <h2 class="reveal">Ready to stop doing it<br><em>the hard way?</em></h2>
-      <p class="reveal">Book a free 30-minute call. We will find one thing AI can fix in your business.</p>
-      <div class="reveal">
-        <a href="mailto:hello@ailabs.co.nz" class="btn-primary">Book a free call</a>
-        <p class="cta-note">No pitch. No obligation. Just a conversation.</p>
-      </div>
+    <div class="work-grid">
+      <a href="#" class="work-card reveal"><span class="tag">AI Agent</span><h3>Project Name One</h3><p>One line describing what this product does and who it's for.</p><span class="link">See it live →</span></a>
+      <a href="#" class="work-card reveal"><span class="tag">Automation</span><h3>Project Name Two</h3><p>One line describing what this product does and who it's for.</p><span class="link">See it live →</span></a>
+      <a href="#" class="work-card reveal"><span class="tag">Business App</span><h3>Project Name Three</h3><p>One line describing what this product does and who it's for.</p><span class="link">See it live →</span></a>
     </div>
-  </section>
-  <footer>
-    <a href="#" class="footer-logo">AI<span>Labs</span></a>
-    <p>2026 AILabs, Christchurch, New Zealand</p>
-  </footer>
-  <script>
-    const reveals = document.querySelectorAll('.reveal');
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((entry, i) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => entry.target.classList.add('visible'), i * 80);
-          io.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12 });
-    reveals.forEach(el => io.observe(el));
-  </script>
+  </div>
+</section>
+
+<section id="cta">
+  <div class="wrap">
+    <span class="eyebrow" style="background:rgba(22,51,0,0.12); color:var(--green-dark);">Get started</span>
+    <h2 class="display" style="margin-top:1.25rem;">Ready to stop<br>doing it the<br>hard way?</h2>
+    <p class="alt-head">Book a free 30-minute call. We'll find one thing AI can fix in your business — no pitch, no obligation.</p>
+    <a href="mailto:hello@ailabs.co.nz" class="btn btn-dark">Book a free call <span class="arrow">→</span></a>
+  </div>
+</section>
+
+<footer>
+  <a href="#" class="logo">AILabs<span class="logo-dot"></span></a>
+  <p>© 2026 AILabs · Christchurch, Aotearoa NZ · hello@ailabs.co.nz</p>
+</footer>
+
+<script>
+  // ---- Reveal on scroll ----
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 60);
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => io.observe(el));
+
+  // ---- Time Saver Calculator ----
+  const PRICE_UPFRONT = 600;
+  const PRICE_MONTHLY = 149;
+
+  const $ = (id) => document.getElementById(id);
+  const nz = new Intl.NumberFormat('en-NZ', { style: 'currency', currency: 'NZD', maximumFractionDigits: 0 });
+  const num = new Intl.NumberFormat('en-NZ', { maximumFractionDigits: 0 });
+
+  function calcSavings() {
+    const task = ($('task').value || '').trim() || 'this task';
+    const time = parseFloat($('time').value);
+    const unit = $('unit').value;
+    const rate = parseFloat($('rate').value);
+
+    if (!isFinite(time) || time <= 0 || !isFinite(rate) || rate <= 0) {
+      $('savingsBig').innerHTML = '$—<small>Enter hours and an hourly rate to see the numbers.</small>';
+      $('resultRows').hidden = true;
+      return;
+    }
+
+    // Convert time to hours per month
+    let hoursPerMonth;
+    if (unit === 'day') hoursPerMonth = time * 21.7;      // workdays
+    else if (unit === 'week') hoursPerMonth = time * 4.33;
+    else hoursPerMonth = time;
+
+    const monthlyCost = hoursPerMonth * rate;
+    const annualCost = monthlyCost * 12;
+    const annualHours = hoursPerMonth * 12;
+    const ailabsYear1 = PRICE_UPFRONT + PRICE_MONTHLY * 12;
+    const year1Savings = annualCost - ailabsYear1;
+
+    let paybackText;
+    if (monthlyCost <= PRICE_MONTHLY) {
+      paybackText = 'Volume too low to pay back';
+    } else {
+      const monthsToPayback = PRICE_UPFRONT / (monthlyCost - PRICE_MONTHLY);
+      paybackText = monthsToPayback < 1 ? 'Under 1 month' : Math.ceil(monthsToPayback) + ' months';
+    }
+
+    const savingsLabel = year1Savings >= 0
+      ? `${nz.format(year1Savings)}`
+      : `−${nz.format(Math.abs(year1Savings))}`;
+
+    $('savingsBig').innerHTML =
+      `${savingsLabel}<small>on <strong style="color:var(--bg);">${escapeHtml(task)}</strong> in the first 12 months</small>`;
+
+    $('rHours').textContent = num.format(Math.round(annualHours)) + ' hrs';
+    $('rMonthly').textContent = nz.format(Math.round(monthlyCost));
+    $('rAilabs').textContent = nz.format(ailabsYear1) + ' / yr';
+    $('rPayback').textContent = paybackText;
+    $('resultRows').hidden = false;
+  }
+
+  function escapeHtml(s) {
+    return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+
+  $('calcBtn').addEventListener('click', calcSavings);
+  $('calcForm').addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); calcSavings(); }});
+  ['time','unit','rate','task'].forEach(id => $(id).addEventListener('input', () => {
+    if ($('time').value && $('rate').value) calcSavings();
+  }));
+  $('calcReset').addEventListener('click', () => {
+    ['task','time','rate'].forEach(id => $(id).value = '');
+    $('unit').value = 'week';
+    $('savingsBig').innerHTML = '$—<small>Fill in the form to see the numbers.</small>';
+    $('resultRows').hidden = true;
+  });
+</script>
 </body>
 </html>
