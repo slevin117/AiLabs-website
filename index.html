@@ -124,7 +124,7 @@
       letter-spacing: -0.02em;
       text-transform: none;
     }
-    h1.display { font-size: clamp(3.8rem, 11vw, 9rem); }
+    h1.display { font-size: clamp(3rem, 11vw, 9rem); }
     h2.display { font-size: clamp(2.6rem, 7vw, 5.2rem); }
     h3.display { font-size: clamp(1.6rem, 3vw, 2.2rem); }
     .alt-head { font-family: var(--body); font-weight: 600; font-size: clamp(1.15rem, 1.6vw, 1.35rem); line-height: 1.4; color: var(--ink-soft); max-width: 56ch; }
@@ -378,9 +378,13 @@
     }
     footer .logo { font-size: 1.1rem; }
 
-    /* ---------- Reveal ---------- */
-    .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.7s ease, transform 0.7s ease; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
+    /* ---------- Reveal (progressive enhancement) ---------- */
+    .reveal { opacity: 1; transform: none; }
+    .js-reveal .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .js-reveal .reveal.visible { opacity: 1; transform: translateY(0); }
+    @media (prefers-reduced-motion: reduce) {
+      .js-reveal .reveal { opacity: 1; transform: none; transition: none; }
+    }
 
     @media (max-width: 560px) {
       section { padding: 5rem 0; }
@@ -593,17 +597,20 @@
 </footer>
 
 <script>
-  // ---- Reveal on scroll ----
-  const reveals = document.querySelectorAll('.reveal');
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => entry.target.classList.add('visible'), i * 60);
-        io.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12 });
-  reveals.forEach(el => io.observe(el));
+  // ---- Reveal on scroll (opt-in via js-reveal; content stays visible if JS is slow/off) ----
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.documentElement.classList.add('js-reveal');
+    const reveals = document.querySelectorAll('.reveal');
+    const show = (el, i = 0) => setTimeout(() => el.classList.add('visible'), i * 60);
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) { show(entry.target, i); io.unobserve(entry.target); }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -5% 0px' });
+    reveals.forEach(el => io.observe(el));
+    // Safety net: after 2.5s, force anything still hidden to visible (covers headless capture & slow scrolls)
+    setTimeout(() => reveals.forEach(el => el.classList.add('visible')), 2500);
+  }
 
   // ---- Time Saver Calculator ----
   const PRICE_UPFRONT = 600;
