@@ -395,6 +395,62 @@
       .calc-row { grid-template-columns: 1fr; }
       #cta { padding: 5rem 1.5rem; }
     }
+
+    /* ---------- Footer legal links ---------- */
+    .footer-legal { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .footer-legal a { color: var(--ink-soft); text-decoration: none; font-family: var(--mono); font-size: 0.78rem; }
+    .footer-legal a:hover { color: var(--green-dark); }
+
+    /* ---------- Modal ---------- */
+    .modal[hidden] { display: none; }
+    .modal {
+      position: fixed; inset: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: center;
+      padding: 1rem;
+    }
+    .modal-backdrop {
+      position: absolute; inset: 0;
+      background: rgba(14,15,12,0.72);
+      backdrop-filter: blur(6px);
+      animation: modalFade 0.2s ease;
+    }
+    .modal-panel {
+      position: relative;
+      background: var(--bg);
+      color: var(--ink);
+      border-radius: 30px;
+      max-width: 960px;
+      width: 100%;
+      max-height: 92vh;
+      overflow: auto;
+      padding: 2rem 1.75rem;
+      box-shadow: 0 30px 80px -20px rgba(0,0,0,0.5);
+      animation: modalPop 0.25s ease;
+    }
+    @media (min-width: 720px) { .modal-panel { padding: 2.5rem; } }
+    .modal-close {
+      position: absolute; top: 0.9rem; right: 0.9rem;
+      width: 2.4rem; height: 2.4rem;
+      border: 0; border-radius: 9999px;
+      background: rgba(14,15,12,0.08);
+      color: var(--ink);
+      font-size: 1.4rem; line-height: 1;
+      cursor: pointer;
+      display: grid; place-items: center;
+    }
+    .modal-close:hover { background: rgba(14,15,12,0.14); }
+    .modal-head { margin-bottom: 1.25rem; padding-right: 2.5rem; }
+    .modal-head h2 { font-family: var(--display); font-weight: 900; font-size: clamp(1.6rem, 3vw, 2.2rem); letter-spacing: -0.02em; line-height: 0.95; }
+    .modal-head p { color: var(--ink-soft); font-size: 0.98rem; margin-top: 0.6rem; }
+    .modal-fallback { margin-top: 1rem; font-size: 0.9rem; color: var(--ink-soft); text-align: center; }
+    .modal-fallback a { color: var(--green-dark); font-weight: 600; }
+    #calInline { min-height: 560px; border-radius: 20px; overflow: hidden; }
+    @keyframes modalFade { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes modalPop { from { opacity: 0; transform: translateY(12px) scale(0.98); } to { opacity: 1; transform: none; } }
+    @media (prefers-reduced-motion: reduce) {
+      .modal-backdrop, .modal-panel { animation: none; }
+    }
+    body.modal-open { overflow: hidden; }
   </style>
 </head>
 <body>
@@ -402,12 +458,13 @@
 <nav>
   <a href="#" class="logo">AILabs<span class="logo-dot" aria-hidden="true"></span></a>
   <div class="nav-links">
+    <a href="#why">Why us</a>
     <a href="#services">What we build</a>
     <a href="#calc">Savings calculator</a>
+    <a href="#how">How it works</a>
     <a href="#work">Work</a>
-    <a href="#why">Why us</a>
   </div>
-  <a href="#cta" class="btn btn-primary">Book a call <span class="arrow">→</span></a>
+  <button type="button" class="btn btn-primary" data-open-modal="book">Book a call <span class="arrow">→</span></button>
 </nav>
 
 <section id="hero">
@@ -443,6 +500,22 @@
     <span>Stop doing it the hard way <i class="dot"></i> Ship in days, not months <i class="dot"></i> Built in NZ for NZ SMBs <i class="dot"></i> Automate the boring parts <i class="dot"></i></span>
   </div>
 </div>
+
+<section id="why">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Why AILabs</span>
+      <h2 class="display">No strategy decks.<br>No account managers.</h2>
+      <p class="alt-head">Most AI consultants hand you a report and leave. Most dev agencies take months and charge for it. We do neither.</p>
+    </div>
+    <div class="reasons">
+      <div class="reason reveal"><h3>Faster &amp; cheaper</h3><p>We use AI to build, which means less time and less cost than a traditional agency.</p></div>
+      <div class="reason reveal"><h3>Direct access</h3><p>You deal with us directly — no account managers, no handoffs. One team that knows your project inside out.</p></div>
+      <div class="reason reveal"><h3>Tech that fits</h3><p>We understand both the business problem and how to solve it. No generic tools bolted together.</p></div>
+      <div class="reason reveal"><h3>NZ-based</h3><p>Local hours, local context, easy to reach. No offshore delays or communication gaps.</p></div>
+    </div>
+  </div>
+</section>
 
 <section id="services">
   <div class="wrap">
@@ -533,7 +606,7 @@
           <div class="result-row accent"><span>Payback period</span><span id="rPayback">—</span></div>
         </div>
         <div class="result-cta">
-          <a href="#cta" class="btn btn-primary">Book a call about this <span class="arrow">→</span></a>
+          <button type="button" class="btn btn-primary" data-open-modal="book">Book a call about this <span class="arrow">→</span></button>
           <div class="pricing-note">Placeholder pricing · $600 upfront · $149 / month</div>
         </div>
       </div>
@@ -551,22 +624,6 @@
       <div class="step reveal"><div class="step-num">01</div><div><h3>We talk</h3><p>You show us where time gets lost. We ask the right questions. Free, no pitch, no pressure.</p></div></div>
       <div class="step reveal"><div class="step-num">02</div><div><h3>We build</h3><p>Fast. Scoped. No bloat. No six-week project plans. We use AI to build, so it costs less and ships sooner.</p></div></div>
       <div class="step reveal"><div class="step-num">03</div><div><h3>You run it</h3><p>A tool built for your business, that your team can use from day one. We don't move on until it works.</p></div></div>
-    </div>
-  </div>
-</section>
-
-<section id="why">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <span class="eyebrow">Why AILabs</span>
-      <h2 class="display">No strategy decks.<br>No account managers.</h2>
-      <p class="alt-head">Most AI consultants hand you a report and leave. Most dev agencies take months and charge for it. We do neither.</p>
-    </div>
-    <div class="reasons">
-      <div class="reason reveal"><h3>Faster &amp; cheaper</h3><p>We use AI to build, which means less time and less cost than a traditional agency.</p></div>
-      <div class="reason reveal"><h3>Direct access</h3><p>You deal with us directly — no account managers, no handoffs. One team that knows your project inside out.</p></div>
-      <div class="reason reveal"><h3>Tech that fits</h3><p>We understand both the business problem and how to solve it. No generic tools bolted together.</p></div>
-      <div class="reason reveal"><h3>NZ-based</h3><p>Local hours, local context, easy to reach. No offshore delays or communication gaps.</p></div>
     </div>
   </div>
 </section>
@@ -590,14 +647,32 @@
     <span class="eyebrow" style="background:rgba(22,51,0,0.12); color:var(--green-dark);">Get started</span>
     <h2 class="display" style="margin-top:1.25rem;">Ready to stop<br>doing it the<br>hard way?</h2>
     <p class="alt-head">Book a free 30-minute call. We'll find one thing AI can fix in your business — no pitch, no obligation.</p>
-    <a href="mailto:hello@ailabs.co.nz" class="btn btn-dark">Book a free call <span class="arrow">→</span></a>
+    <button type="button" class="btn btn-dark" data-open-modal="book">Book a free call <span class="arrow">→</span></button>
   </div>
 </section>
 
 <footer>
   <a href="#" class="logo">AILabs<span class="logo-dot"></span></a>
+  <nav class="footer-legal" aria-label="Legal">
+    <a href="privacy.html">Privacy</a>
+    <a href="terms.html">Terms</a>
+    <a href="data-deletion.html">Data deletion</a>
+  </nav>
   <p>© 2026 AILabs · New Zealand · hello@ailabs.co.nz</p>
 </footer>
+
+<div id="bookModal" class="modal" hidden role="dialog" aria-modal="true" aria-labelledby="bookModalTitle">
+  <div class="modal-backdrop" data-modal-close></div>
+  <div class="modal-panel">
+    <button type="button" class="modal-close" data-modal-close aria-label="Close">×</button>
+    <div class="modal-head">
+      <h2 id="bookModalTitle">Book a free 30-min call</h2>
+      <p>Pick a time that works for you. No pitch, no obligation — we'll find one thing AI can fix in your business.</p>
+    </div>
+    <div id="calInline"></div>
+    <p class="modal-fallback">Prefer email? <a href="mailto:hello@ailabs.co.nz">hello@ailabs.co.nz</a></p>
+  </div>
+</div>
 
 <script>
   // ---- Reveal on scroll (opt-in via js-reveal; content stays visible if JS is slow/off) ----
@@ -683,6 +758,59 @@
     $('unit').value = 'week';
     $('savingsBig').innerHTML = '$—<small>Fill in the form to see the numbers.</small>';
     $('resultRows').hidden = true;
+  });
+
+  // ---- Book-a-call modal ----
+  // TODO: replace CAL_LINK with real Cal.com booking slug once account is created at cal.com
+  const CAL_LINK = 'ailabs/30min';
+  const modal = $('bookModal');
+  let lastTrigger = null;
+  let calLoaded = false;
+
+  function loadCalEmbed() {
+    if (calLoaded) return;
+    calLoaded = true;
+    (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+    Cal("init", "booking", { origin: "https://cal.com" });
+    Cal.ns.booking("inline", {
+      elementOrSelector: "#calInline",
+      config: { layout: "month_view" },
+      calLink: CAL_LINK,
+    });
+    Cal.ns.booking("ui", { hideEventTypeDetails: false, layout: "month_view" });
+  }
+
+  function openModal(trigger) {
+    lastTrigger = trigger || null;
+    modal.hidden = false;
+    document.body.classList.add('modal-open');
+    loadCalEmbed();
+    // focus the close button
+    setTimeout(() => modal.querySelector('.modal-close').focus(), 0);
+  }
+
+  function closeModal() {
+    modal.hidden = true;
+    document.body.classList.remove('modal-open');
+    if (lastTrigger && typeof lastTrigger.focus === 'function') lastTrigger.focus();
+  }
+
+  document.addEventListener('click', (e) => {
+    const opener = e.target.closest('[data-open-modal="book"]');
+    if (opener) { e.preventDefault(); openModal(opener); return; }
+    if (e.target.closest('[data-modal-close]')) { closeModal(); }
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !modal.hidden) closeModal();
+    // focus trap
+    if (e.key === 'Tab' && !modal.hidden) {
+      const focusables = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+      if (!focusables.length) return;
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
   });
 </script>
 </body>
