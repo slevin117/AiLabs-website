@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 120" fill="none">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Archivo:wght@900&amp;display=swap');
+    </style>
+  </defs>
+  <text
+    x="20" y="90"
+    font-family="'Archivo', 'Helvetica Neue', Arial, sans-serif"
+    font-weight="900"
+    font-size="96"
+    letter-spacing="-0.03em"
+    fill="#0e0f0c"
+    font-feature-settings="'calt' 1"
+  >AILabs</text>
+  <circle cx="398" cy="86" r="8" fill="#9fe870"/>
+</svg>

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Archivo:wght@900&amp;display=swap');
+    </style>
+  </defs>
+  <text
+    x="3" y="26"
+    font-family="'Archivo', 'Helvetica Neue', Arial, sans-serif"
+    font-weight="900"
+    font-size="30"
+    fill="#0e0f0c"
+    font-feature-settings="'calt' 1"
+  >A</text>
+  <circle cx="27" cy="26" r="3" fill="#9fe870"/>
+</svg>
