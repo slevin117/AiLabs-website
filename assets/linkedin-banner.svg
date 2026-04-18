@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1128" height="191" viewBox="0 0 1128 191">
+  <rect width="1128" height="191" fill="#0e0f0c"/>
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Archivo:wght@900&amp;display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&amp;display=swap');
+    </style>
+  </defs>
+  <!-- Wordmark -->
+  <text
+    x="80" y="115"
+    font-family="'Archivo', 'Helvetica Neue', Arial, sans-serif"
+    font-weight="900"
+    font-size="64"
+    letter-spacing="-0.03em"
+    fill="#ffffff"
+    font-feature-settings="'calt' 1"
+  >AiLabs</text>
+  <circle cx="332" cy="112" r="5.5" fill="#9fe870"/>
+  <!-- Tagline -->
+  <text
+    x="80" y="148"
+    font-family="'Inter', 'Helvetica', Arial, sans-serif"
+    font-weight="500"
+    font-size="18"
+    fill="#868685"
+    letter-spacing="0.02em"
+  >AI that works. For businesses that do.</text>
+  <!-- Accent dot cluster (decorative) -->
+  <circle cx="980" cy="60" r="24" fill="#9fe870" opacity="0.15"/>
+  <circle cx="1020" cy="90" r="16" fill="#9fe870" opacity="0.25"/>
+  <circle cx="1050" cy="55" r="10" fill="#9fe870" opacity="0.4"/>
+  <circle cx="1000" cy="130" r="8" fill="#9fe870" opacity="0.6"/>
+  <circle cx="1060" cy="120" r="5" fill="#9fe870"/>
+</svg>
