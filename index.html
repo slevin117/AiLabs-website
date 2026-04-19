@@ -709,7 +709,7 @@
     <button type="button" class="modal-close" data-modal-close aria-label="Close">×</button>
     <div class="modal-head">
       <h2 id="bookModalTitle">Get in touch</h2>
-      <p>Tell us a bit about your business and what you're looking for. We'll get back to you within one working day.</p>
+      <p id="bookModalSubtitle">Drop your details and we'll check out your site. No pitch, no pressure.</p>
     </div>
     <form class="contact-form" id="contactForm" onsubmit="return false;">
       <div>
@@ -859,6 +859,8 @@
       });
       if (!res.ok) throw new Error('Server error');
 
+      $('bookModalTitle').hidden = true;
+      $('bookModalSubtitle').hidden = true;
       $('contactForm').innerHTML =
         '<div class="success-state">' +
         '<svg class="success-check" viewBox="0 0 64 64" aria-hidden="true">' +
