@@ -712,21 +712,24 @@
       <p id="bookModalSubtitle">Drop your details and we'll check out your site. No pitch, no pressure.</p>
     </div>
     <form class="contact-form" id="contactForm" onsubmit="return false;">
+      <!-- honeypot: hidden from real users, bots fill it -->
+      <input id="contactHoneypot" name="website2" tabindex="-1" autocomplete="off"
+             style="position:absolute;left:-9999px;height:0;width:0;opacity:0;" aria-hidden="true" />
       <div>
         <label for="contactName">Your name</label>
-        <input id="contactName" type="text" placeholder="e.g. Sarah" autocomplete="name" required />
+        <input id="contactName" type="text" placeholder="e.g. Sarah" autocomplete="name" required maxlength="100" />
       </div>
       <div>
         <label for="contactEmail">Email</label>
-        <input id="contactEmail" type="email" placeholder="e.g. sarah@example.co.nz" autocomplete="email" required />
+        <input id="contactEmail" type="email" placeholder="e.g. sarah@example.co.nz" autocomplete="email" required maxlength="254" />
       </div>
       <div>
         <label for="contactWebsite">Company website</label>
-        <input id="contactWebsite" type="url" placeholder="e.g. https://example.co.nz" autocomplete="url" required />
+        <input id="contactWebsite" type="url" placeholder="e.g. https://example.co.nz" autocomplete="url" required maxlength="500" />
       </div>
       <div>
         <label for="contactCostSavings">What are you trying to save costs on? (optional)</label>
-        <textarea id="contactCostSavings" placeholder="e.g. manual data entry, customer support, reporting..."></textarea>
+        <textarea id="contactCostSavings" placeholder="e.g. manual data entry, customer support, reporting..." maxlength="2000"></textarea>
       </div>
       <div class="form-actions">
         <button type="button" class="btn btn-primary" id="contactSend">Send message <span class="arrow">→</span></button>
@@ -836,6 +839,7 @@
   // ---- Contact form → n8n webhook ----
   const WEBHOOK_URL = 'https://n8n.tovizi.com/webhook/ailabs-contact';
   const sendBtn = $('contactSend');
+  let lastSent = 0;
 
   sendBtn.addEventListener('click', async () => {
     const name = ($('contactName').value || '').trim();
@@ -843,8 +847,28 @@
     const website = ($('contactWebsite').value || '').trim();
     const costSavings = ($('contactCostSavings').value || '').trim();
 
+    if ($('contactHoneypot').value) return;
+
+    if (Date.now() - lastSent < 30_000) return;
+
     if (!name || !email || !website) {
       $('contactForm').querySelectorAll('input').forEach(el => el.reportValidity());
+      return;
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      $('contactEmail').setCustomValidity('Please enter a valid email address.');
+      $('contactEmail').reportValidity();
+      $('contactEmail').setCustomValidity('');
+      return;
+    }
+
+    let websiteOk = false;
+    try { websiteOk = ['http:', 'https:'].includes(new URL(website).protocol); } catch {}
+    if (!websiteOk) {
+      $('contactWebsite').setCustomValidity('Please enter a full URL starting with https://');
+      $('contactWebsite').reportValidity();
+      $('contactWebsite').setCustomValidity('');
       return;
     }
 
@@ -859,6 +883,7 @@
       });
       if (!res.ok) throw new Error('Server error');
 
+      lastSent = Date.now();
       $('bookModalTitle').hidden = true;
       $('bookModalSubtitle').hidden = true;
       $('contactForm').innerHTML =
