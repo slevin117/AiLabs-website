@@ -12,13 +12,15 @@
   <meta property="og:image" content="https://ailabs.co.nz/assets/og-image.png" />
   <meta property="og:url" content="https://ailabs.co.nz" />
   <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="AiLabs" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="AiLabs — AI that works. For businesses that do." />
   <meta name="twitter:description" content="AiLabs builds AI agents, business apps and automation for NZ small businesses. Christchurch-based, fast to ship, built to fit." />
   <meta name="twitter:image" content="https://ailabs.co.nz/assets/og-image.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" /></noscript>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -503,7 +505,8 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
+    "@type": ["LocalBusiness", "ProfessionalService"],
+    "@id": "https://ailabs.co.nz",
     "name": "AiLabs",
     "url": "https://ailabs.co.nz",
     "description": "AI agents, business apps and automation for NZ small businesses.",
