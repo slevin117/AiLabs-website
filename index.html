@@ -349,6 +349,12 @@
     .reason h3 { font-family: var(--body); font-weight: 600; font-size: 1.2rem; letter-spacing: -0.01em; margin-bottom: 0.5rem; }
     .reason p { color: var(--ink-soft); font-size: 0.95rem; }
 
+    /* ---------- About ---------- */
+    .about-grid { display: grid; grid-template-columns: 1fr; gap: 3rem; align-items: start; }
+    @media (min-width: 860px) { .about-grid { grid-template-columns: 1fr 1fr; gap: 5rem; } }
+    .about-body { display: flex; flex-direction: column; gap: 1.25rem; }
+    .about-body p { color: var(--ink-soft); font-size: 1.05rem; line-height: 1.65; }
+
     /* ---------- Work ---------- */
     .work-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
     @media (min-width: 800px) { .work-grid { grid-template-columns: repeat(3, 1fr); } }
@@ -687,6 +693,21 @@
       <div class="step reveal"><div class="step-num">01</div><div><h3>You reach out</h3><p>Tell us where time gets lost. We'll reply and set up a call that works around your schedule. Free, no pitch, no pressure.</p></div></div>
       <div class="step reveal"><div class="step-num">02</div><div><h3>We build</h3><p>Fast. Scoped. No bloat. No six-week project plans. We use AI to build, so it costs less and ships sooner.</p></div></div>
       <div class="step reveal"><div class="step-num">03</div><div><h3>You run it</h3><p>A tool built for your business, that your team can use from day one. We don't move on until it works.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <div class="about-grid reveal">
+      <div>
+        <span class="eyebrow">Who we are</span>
+        <h2 class="display" style="margin-top:1.5rem;">Built by someone<br>who's been in<br>the engine room.</h2>
+      </div>
+      <div class="about-body">
+        <p>Dan spent seven years as a Service Delivery Manager at a Christchurch IT firm — managing technology for the kind of businesses AiLabs now serves. He's seen firsthand where time gets wasted, where things break, and what a business owner actually needs from their tech.</p>
+        <p>AiLabs is what happens when that experience meets AI. Not a consultancy handing you a report. Not an offshore dev shop. Someone who knows NZ SMBs, knows the tech, and builds things fast.</p>
+      </div>
     </div>
   </div>
 </section>
