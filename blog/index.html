@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog - AiLabs</title>
+  <meta name="description" content="Practical guides on AI for NZ small businesses. No hype - just what works, from a Christchurch team that builds it every day." />
+  <link rel="canonical" href="https://ailabs.co.nz/blog/" />
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
+  <meta property="og:title" content="Blog - AiLabs" />
+  <meta property="og:description" content="Practical guides on AI for NZ small businesses. No hype - just what works." />
+  <meta property="og:image" content="https://ailabs.co.nz/assets/og-image.png" />
+  <meta property="og:url" content="https://ailabs.co.nz/blog/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="AiLabs" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Blog - AiLabs" />
+  <meta name="twitter:description" content="Practical guides on AI for NZ small businesses. No hype - just what works." />
+  <meta name="twitter:image" content="https://ailabs.co.nz/assets/og-image.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" /></noscript>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --ink: #0e0f0c;
+      --ink-soft: #454745;
+      --ink-dim: #868685;
+      --bg: #f7f8f4;
+      --surface: #ffffff;
+      --green: #9fe870;
+      --green-dark: #163300;
+      --green-hover: #cdffad;
+      --mint: #e2f6d5;
+      --light: #e8ebe6;
+      --border: rgba(14,15,12,0.12);
+      --ring: 0 0 0 1px rgba(14,15,12,0.12);
+      --display: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+      --body: 'Inter', 'Helvetica', Arial, sans-serif;
+      --mono: 'JetBrains Mono', ui-monospace, monospace;
+    }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--body);
+      font-weight: 500;
+      font-size: 1.0625rem;
+      line-height: 1.5;
+      font-feature-settings: "calt" 1, "ss01" 1;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    ::selection { background: var(--green); color: var(--green-dark); }
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 0 1.75rem; }
+
+    /* Nav */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1rem 1.75rem;
+      background: rgba(247,248,244,0.82);
+      backdrop-filter: saturate(140%) blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+    .logo {
+      font-family: var(--display);
+      font-weight: 900;
+      font-size: 1.4rem;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      text-decoration: none;
+      color: var(--ink);
+      display: inline-flex; align-items: baseline; gap: 0.1rem;
+    }
+    .logo-dot { width: 0.45rem; height: 0.45rem; background: var(--green); border-radius: 9999px; display: inline-block; }
+    .nav-links { display: none; gap: 2rem; }
+    .nav-links a { color: var(--ink); text-decoration: none; font-size: 0.95rem; font-weight: 600; }
+    .nav-links a:hover { color: var(--green-dark); }
+    .nav-links a[aria-current="page"] { color: var(--green-dark); }
+    @media (min-width: 860px) { .nav-links { display: flex; } }
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.55rem;
+      font-family: var(--body); font-weight: 600; font-size: 1rem;
+      padding: 0.9rem 1.6rem; border-radius: 9999px; border: 0;
+      text-decoration: none; cursor: pointer;
+      transition: transform 0.18s ease, background 0.2s ease;
+    }
+    .btn-primary { background: var(--green); color: var(--green-dark); }
+    .btn-primary:hover { transform: scale(1.05); background: var(--green-hover); }
+    .btn .arrow { display: inline-block; transition: transform 0.2s ease; }
+    .btn:hover .arrow { transform: translateX(3px); }
+
+    /* Eyebrow */
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      font-family: var(--mono); font-size: 0.72rem; font-weight: 500;
+      text-transform: uppercase; letter-spacing: 0.14em;
+      color: var(--ink-soft);
+      padding: 0.45rem 0.85rem; border-radius: 9999px;
+      background: var(--mint);
+    }
+    .eyebrow::before { content: ''; width: 0.45rem; height: 0.45rem; border-radius: 9999px; background: var(--green-dark); }
+
+    /* Page header */
+    .blog-header {
+      padding: 5rem 0 3.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .blog-header .eyebrow { margin-bottom: 1.5rem; }
+    .blog-header h1 {
+      font-family: var(--display);
+      font-weight: 900;
+      font-size: clamp(2.4rem, 6vw, 4.2rem);
+      line-height: 0.9;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+    .blog-header p {
+      color: var(--ink-soft);
+      font-size: 1.1rem;
+      max-width: 50ch;
+    }
+
+    /* Article grid */
+    .blog-grid {
+      padding: 4rem 0 6rem;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    @media (min-width: 700px) { .blog-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1060px) { .blog-grid { grid-template-columns: repeat(3, 1fr); } }
+
+    .article-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 1.75rem;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+    .article-card:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(14,15,12,0.08); }
+
+    .article-tag {
+      font-family: var(--mono); font-size: 0.68rem; font-weight: 500;
+      text-transform: uppercase; letter-spacing: 0.12em;
+      color: var(--green-dark);
+      background: var(--mint);
+      padding: 0.3rem 0.65rem; border-radius: 9999px;
+      align-self: flex-start;
+    }
+    .article-card h2 {
+      font-family: var(--display);
+      font-weight: 900;
+      font-size: 1.3rem;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+    }
+    .article-card p {
+      font-size: 0.93rem;
+      color: var(--ink-soft);
+      line-height: 1.5;
+      flex: 1;
+    }
+    .article-meta {
+      display: flex; align-items: center; gap: 0.5rem;
+      font-family: var(--mono); font-size: 0.68rem;
+      color: var(--ink-dim);
+      margin-top: auto;
+    }
+    .article-meta span::before { content: '·'; margin-right: 0.5rem; }
+    .article-meta span:first-child::before { content: ''; margin: 0; }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 1.75rem;
+      display: flex; flex-wrap: wrap; align-items: center;
+      gap: 1rem 2rem;
+    }
+    footer .logo { font-size: 1.1rem; }
+    .footer-legal { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .footer-legal a { color: var(--ink-dim); text-decoration: none; font-size: 0.88rem; }
+    .footer-legal a:hover { color: var(--ink); }
+    footer > p { color: var(--ink-dim); font-size: 0.88rem; margin-left: auto; }
+    @media (max-width: 600px) { footer > p { margin-left: 0; width: 100%; } }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="logo">AiLabs<span class="logo-dot" aria-hidden="true"></span></a>
+  <div class="nav-links">
+    <a href="/#why">Why us</a>
+    <a href="/#services">What we build</a>
+    <a href="/#calc">Savings calculator</a>
+    <a href="/#how">How it works</a>
+    <a href="/#work">Work</a>
+    <a href="/blog/" aria-current="page">Blog</a>
+  </div>
+  <a href="/#cta" class="btn btn-primary">Get in touch <span class="arrow">-></span></a>
+</nav>
+
+<div class="wrap">
+  <header class="blog-header">
+    <span class="eyebrow">Blog</span>
+    <h1>AI, without<br>the nonsense.</h1>
+    <p>Practical guides for NZ businesses that want results, not buzzwords.</p>
+  </header>
+
+  <div class="blog-grid">
+
+    <a href="/blog/where-to-start-with-ai-nz-small-business/" class="article-card">
+      <span class="article-tag">Getting started</span>
+      <h2>Where to start with AI if you run a small NZ business</h2>
+      <p>Most AI advice is written for tech companies with big teams. Here's what actually makes sense if you're a small NZ operator.</p>
+      <div class="article-meta">
+        <span>20 Apr 2026</span>
+        <span>7 min read</span>
+      </div>
+    </a>
+
+  </div>
+</div>
+
+<footer>
+  <a href="/" class="logo">AiLabs<span class="logo-dot"></span></a>
+  <nav class="footer-legal" aria-label="Legal">
+    <a href="/privacy.html">Privacy</a>
+    <a href="/terms.html">Terms</a>
+    <a href="/data-deletion.html">Data deletion</a>
+  </nav>
+  <p>© 2026 AiLabs · New Zealand · hello@ailabs.co.nz</p>
+</footer>
+
+</body>
+</html>

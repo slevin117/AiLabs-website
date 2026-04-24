@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AiLabs - AI that works. For businesses that do.</title>
+  <meta name="description" content="AiLabs builds AI agents, business apps and automation for NZ small businesses. Christchurch-based, fast to ship, built to fit. Book a free call today." />
+  <link rel="canonical" href="https://ailabs.co.nz" />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <meta property="og:title" content="AiLabs - AI that works. For businesses that do." />
+  <meta property="og:description" content="AiLabs builds AI agents, business apps and automation for NZ small businesses. Christchurch-based, fast to ship, built to fit. Book a free call today." />
+  <meta property="og:image" content="https://ailabs.co.nz/assets/og-image.png" />
+  <meta property="og:url" content="https://ailabs.co.nz" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="AiLabs" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="AiLabs - AI that works. For businesses that do." />
+  <meta name="twitter:description" content="AiLabs builds AI agents, business apps and automation for NZ small businesses. Christchurch-based, fast to ship, built to fit." />
+  <meta name="twitter:image" content="https://ailabs.co.nz/assets/og-image.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" /></noscript>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --ink: #0e0f0c;
+      --ink-soft: #454745;
+      --ink-dim: #868685;
+      --bg: #f7f8f4;
+      --surface: #ffffff;
+      --green: #9fe870;
+      --green-dark: #163300;
+      --green-hover: #cdffad;
+      --mint: #e2f6d5;
+      --light: #e8ebe6;
+      --border: rgba(14,15,12,0.12);
+      --ring: 0 0 0 1px rgba(14,15,12,0.12);
+      --display: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+      --body: 'Inter', 'Helvetica', Arial, sans-serif;
+      --mono: 'JetBrains Mono', ui-monospace, monospace;
+    }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--body);
+      font-weight: 500;
+      font-size: 1.0625rem;
+      line-height: 1.5;
+      font-feature-settings: "calt" 1, "ss01" 1;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    ::selection { background: var(--green); color: var(--green-dark); }
+
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 0 1.75rem; }
+    section { padding: 7rem 0; position: relative; }
+
+    /* ---------- Nav ---------- */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1rem 1.75rem;
+      background: rgba(247,248,244,0.82);
+      backdrop-filter: saturate(140%) blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+    .logo {
+      font-family: var(--display);
+      font-weight: 900;
+      font-size: 1.4rem;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      text-decoration: none;
+      color: var(--ink);
+      display: inline-flex; align-items: baseline; gap: 0.1rem;
+    }
+    .logo-dot { width: 0.45rem; height: 0.45rem; background: var(--green); border-radius: 9999px; display: inline-block; }
+    .nav-links { display: none; gap: 2rem; }
+    .nav-links a { color: var(--ink); text-decoration: none; font-size: 0.95rem; font-weight: 600; }
+    .nav-links a:hover { color: var(--green-dark); }
+    @media (min-width: 860px) { .nav-links { display: flex; } }
+
+    /* ---------- Buttons ---------- */
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.55rem;
+      font-family: var(--body);
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0.9rem 1.6rem;
+      border-radius: 9999px;
+      border: 0;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.18s ease, background 0.2s ease;
+      will-change: transform;
+    }
+    .btn-primary { background: var(--green); color: var(--green-dark); }
+    .btn-primary:hover { transform: scale(1.05); background: var(--green-hover); }
+    .btn-primary:active { transform: scale(0.96); }
+    .btn-secondary {
+      background: rgba(22, 51, 0, 0.08);
+      color: var(--ink);
+    }
+    .btn-secondary:hover { transform: scale(1.05); background: rgba(22,51,0,0.12); }
+    .btn-secondary:active { transform: scale(0.96); }
+    .btn-dark { background: var(--ink); color: var(--bg); }
+    .btn-dark:hover { transform: scale(1.05); background: #1c1d1a; }
+    .btn-dark:active { transform: scale(0.96); }
+    .btn .arrow { display: inline-block; transition: transform 0.2s ease; }
+    .btn:hover .arrow { transform: translateX(3px); }
+
+    /* ---------- Labels / eyebrows ---------- */
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--ink-soft);
+      padding: 0.45rem 0.85rem;
+      border-radius: 9999px;
+      background: var(--mint);
+    }
+    .eyebrow::before {
+      content: ''; width: 0.45rem; height: 0.45rem; border-radius: 9999px; background: var(--green-dark);
+    }
+
+    /* ---------- Display type ---------- */
+    h1, h2, h3 { font-family: var(--display); color: var(--ink); }
+    .display {
+      font-family: var(--display);
+      font-weight: 900;
+      line-height: 0.85;
+      letter-spacing: -0.02em;
+      text-transform: none;
+    }
+    h1.display { font-size: clamp(3rem, 11vw, 9rem); }
+    h2.display { font-size: clamp(2.6rem, 7vw, 5.2rem); }
+    h3.display { font-size: clamp(1.6rem, 3vw, 2.2rem); }
+    .alt-head { font-family: var(--body); font-weight: 600; font-size: clamp(1.15rem, 1.6vw, 1.35rem); line-height: 1.4; color: var(--ink-soft); max-width: 56ch; }
+
+    /* ---------- Hero ---------- */
+    #hero { padding: 6rem 0 8rem; position: relative; overflow: hidden; }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      align-items: end;
+    }
+    @media (min-width: 960px) { .hero-grid { grid-template-columns: 1.35fr 1fr; gap: 4rem; } }
+    .hero-head .eyebrow { margin-bottom: 2rem; }
+    .hero-head h1 span.mark {
+      display: inline-block;
+      background: var(--green);
+      color: var(--green-dark);
+      padding: 0.02em 0.22em 0.14em;
+      border-radius: 0.16em;
+      line-height: 0.9;
+      margin: 0 0.02em;
+      transform: translateY(-0.015em);
+    }
+    .hero-head .hero-sub { margin: 2rem 0 2.5rem; }
+    .hero-cta-row { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+    .hero-aside {
+      border: 1px solid var(--border);
+      background: var(--surface);
+      border-radius: 30px;
+      padding: 1.75rem;
+      box-shadow: var(--ring);
+    }
+    .hero-aside .stat-big {
+      font-family: var(--display);
+      font-weight: 900;
+      font-size: clamp(3rem, 6vw, 4.5rem);
+      line-height: 0.85;
+      letter-spacing: -0.02em;
+      color: var(--green-dark);
+    }
+    .hero-aside .stat-big em { font-style: normal; color: var(--ink); }
+    .hero-aside p { color: var(--ink-soft); font-size: 0.95rem; margin-top: 1rem; }
+    .hero-aside .chips { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1.25rem; }
+    .chip {
+      font-family: var(--mono); font-size: 0.72rem; font-weight: 500;
+      padding: 0.35rem 0.75rem; border-radius: 9999px;
+      background: var(--mint); color: var(--green-dark);
+    }
+
+    /* decorative floating token */
+    .float-token {
+      position: absolute; right: -4rem; top: 10%;
+      width: 18rem; height: 18rem;
+      background: radial-gradient(circle at 30% 30%, var(--green) 0%, var(--mint) 55%, transparent 72%);
+      filter: blur(10px);
+      opacity: 0.55;
+      pointer-events: none;
+      animation: drift 14s ease-in-out infinite;
+    }
+    @keyframes drift { 0%,100% { transform: translate(0,0); } 50% { transform: translate(-20px, 18px); } }
+
+    /* ---------- Marquee ---------- */
+    .marquee {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: var(--ink);
+      color: var(--bg);
+      overflow: hidden;
+      padding: 1.3rem 0;
+    }
+    .marquee-track {
+      display: flex; gap: 3.5rem;
+      white-space: nowrap;
+      animation: scroll 40s linear infinite;
+      font-family: var(--display);
+      font-weight: 900;
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+    .marquee-track span { display: inline-flex; align-items: center; gap: 3.5rem; }
+    .marquee-track .dot { width: 0.55rem; height: 0.55rem; background: var(--green); border-radius: 9999px; }
+    @keyframes scroll { from { transform: translateX(0);} to { transform: translateX(-50%);} }
+
+    /* ---------- Section head ---------- */
+    .section-head { display: grid; gap: 1.25rem; margin-bottom: 3.5rem; }
+    .section-head .alt-head { margin-top: 0.5rem; }
+
+    /* ---------- Services ---------- */
+    .services-grid { display: grid; grid-template-columns: 1fr; gap: 1.25rem; }
+    @media (min-width: 720px) { .services-grid { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 1080px) { .services-grid { grid-template-columns: repeat(4, 1fr); } }
+    .service {
+      background: var(--surface);
+      border-radius: 30px;
+      padding: 2rem 1.75rem;
+      box-shadow: var(--ring);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      min-height: 17rem;
+      display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .service:hover { transform: translateY(-4px); box-shadow: 0 0 0 1px var(--green-dark), 0 18px 40px -28px rgba(14,15,12,0.35); }
+    .service .num { font-family: var(--mono); font-size: 0.75rem; color: var(--ink-dim); }
+    .service h3 { font-family: var(--body); font-weight: 600; font-size: 1.35rem; line-height: 1.18; letter-spacing: -0.015em; margin: 1rem 0 0.6rem; }
+    .service p { color: var(--ink-soft); font-size: 0.95rem; font-weight: 500; }
+    .service .glyph {
+      width: 2.4rem; height: 2.4rem; border-radius: 9999px;
+      background: var(--mint); color: var(--green-dark);
+      display: grid; place-items: center; font-family: var(--display); font-weight: 900; font-size: 1.1rem;
+    }
+
+    /* ---------- Calculator ---------- */
+    #calc { background: var(--ink); color: var(--bg); border-radius: 40px; margin: 2rem 1.75rem; padding: 5rem 2rem; }
+    @media (min-width: 960px) { #calc { margin: 2rem auto; max-width: 1200px; padding: 6rem 4rem; } }
+    #calc .eyebrow { background: rgba(159,232,112,0.15); color: var(--green); }
+    #calc .eyebrow::before { background: var(--green); }
+    #calc h2.display { color: var(--bg); }
+    #calc .alt-head { color: rgba(247,248,244,0.75); }
+
+    .calc-grid {
+      display: grid; grid-template-columns: 1fr; gap: 2.5rem; margin-top: 3rem;
+    }
+    @media (min-width: 900px) { .calc-grid { grid-template-columns: 1fr 1fr; gap: 3rem; align-items: stretch; } }
+    .calc-form, .calc-result {
+      background: #1a1b17;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 30px;
+      padding: 2rem;
+    }
+    .calc-form label {
+      display: block;
+      font-family: var(--mono); font-size: 0.72rem;
+      text-transform: uppercase; letter-spacing: 0.14em;
+      color: rgba(247,248,244,0.6);
+      margin: 1.25rem 0 0.55rem;
+    }
+    .calc-form label:first-child { margin-top: 0; }
+    .calc-form input, .calc-form select {
+      width: 100%;
+      background: #0e0f0c;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 14px;
+      padding: 0.95rem 1.1rem;
+      color: var(--bg);
+      font-family: var(--body);
+      font-size: 1rem;
+      font-weight: 500;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .calc-form input:focus, .calc-form select:focus {
+      outline: none;
+      border-color: var(--green);
+      box-shadow: 0 0 0 3px rgba(159,232,112,0.25);
+    }
+    .calc-row { display: grid; grid-template-columns: 2fr 1fr; gap: 0.75rem; }
+    .calc-form .hint { font-size: 0.82rem; color: rgba(247,248,244,0.5); margin-top: 0.5rem; font-weight: 500; }
+
+    .calc-result { display: flex; flex-direction: column; justify-content: space-between; gap: 1.5rem; }
+    .result-lead { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--green); }
+    .result-big {
+      font-family: var(--display); font-weight: 900;
+      font-size: clamp(3rem, 6vw, 4.8rem);
+      line-height: 0.85;
+      letter-spacing: -0.02em;
+      color: var(--green);
+    }
+    .result-big small { display: block; font-size: 0.9rem; font-weight: 500; font-family: var(--body); color: rgba(247,248,244,0.6); letter-spacing: 0; margin-top: 0.6rem; }
+    .result-rows { display: grid; gap: 0.75rem; padding-top: 1.25rem; border-top: 1px dashed rgba(255,255,255,0.15); }
+    .result-row { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; font-size: 0.95rem; }
+    .result-row span:first-child { color: rgba(247,248,244,0.6); }
+    .result-row span:last-child { color: var(--bg); font-weight: 600; font-variant-numeric: tabular-nums; }
+    .result-row.accent span:last-child { color: var(--green); }
+    .result-cta { margin-top: 0.5rem; }
+    .result-empty { color: rgba(247,248,244,0.5); font-size: 0.95rem; font-style: italic; }
+    .pricing-note {
+      margin-top: 1.5rem;
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      color: rgba(247,248,244,0.45);
+      text-transform: uppercase;
+    }
+
+    /* ---------- Steps ---------- */
+    .steps { display: grid; gap: 0; }
+    .step {
+      display: grid; grid-template-columns: 5rem 1fr; gap: 2rem;
+      padding: 2.25rem 0;
+      border-top: 1px solid var(--border);
+      align-items: start;
+    }
+    .step:last-child { border-bottom: 1px solid var(--border); }
+    .step-num { font-family: var(--display); font-weight: 900; font-size: 2.4rem; line-height: 0.85; color: var(--green-dark); }
+    .step h3 { font-family: var(--body); font-weight: 600; font-size: 1.45rem; letter-spacing: -0.015em; margin-bottom: 0.45rem; }
+    .step p { color: var(--ink-soft); max-width: 60ch; font-size: 1rem; }
+
+    /* ---------- Why ---------- */
+    #why { background: var(--mint); border-radius: 40px; margin: 2rem 1.75rem; }
+    @media (min-width: 960px) { #why { margin: 2rem auto; max-width: 1200px; } }
+    .reasons { display: grid; grid-template-columns: 1fr; gap: 1rem; margin-top: 3rem; }
+    @media (min-width: 720px) { .reasons { grid-template-columns: 1fr 1fr; } }
+    .reason {
+      background: var(--surface);
+      border-radius: 24px;
+      padding: 1.75rem;
+      box-shadow: var(--ring);
+    }
+    .reason h3 { font-family: var(--body); font-weight: 600; font-size: 1.2rem; letter-spacing: -0.01em; margin-bottom: 0.5rem; }
+    .reason p { color: var(--ink-soft); font-size: 0.95rem; }
+
+    /* ---------- About ---------- */
+    .about-grid { display: grid; grid-template-columns: 1fr; gap: 3rem; align-items: start; }
+    @media (min-width: 860px) { .about-grid { grid-template-columns: 1fr 1fr; gap: 5rem; } }
+    .about-body { display: flex; flex-direction: column; gap: 1.25rem; }
+    .about-body p { color: var(--ink-soft); font-size: 1.05rem; line-height: 1.65; }
+
+    /* ---------- Work ---------- */
+    .work-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+    @media (min-width: 800px) { .work-grid { grid-template-columns: repeat(3, 1fr); } }
+    .work-card {
+      background: var(--surface);
+      border-radius: 30px;
+      padding: 2rem;
+      box-shadow: var(--ring);
+      text-decoration: none;
+      color: var(--ink);
+      display: flex; flex-direction: column; gap: 1rem;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      min-height: 17rem;
+    }
+    .work-card:hover { transform: translateY(-4px); box-shadow: 0 0 0 1px var(--green-dark), 0 18px 40px -28px rgba(14,15,12,0.35); }
+    .work-card .tag {
+      font-family: var(--mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em;
+      padding: 0.35rem 0.7rem; border-radius: 9999px; background: var(--mint); color: var(--green-dark);
+      align-self: flex-start;
+    }
+    .work-card h3 { font-family: var(--body); font-weight: 600; font-size: 1.35rem; letter-spacing: -0.015em; }
+    .work-card p { color: var(--ink-soft); font-size: 0.95rem; flex: 1; }
+    .work-card .link { font-weight: 600; color: var(--green-dark); display: inline-flex; align-items: center; gap: 0.4rem; }
+
+    /* ---------- CTA ---------- */
+    #cta {
+      background: var(--green);
+      border-radius: 40px;
+      margin: 2rem 1.75rem;
+      text-align: center;
+      padding: 7rem 1.75rem;
+    }
+    @media (min-width: 960px) { #cta { margin: 2rem auto; max-width: 1200px; } }
+    #cta h2.display { color: var(--green-dark); }
+    #cta .alt-head { color: rgba(22,51,0,0.8); margin: 1.5rem auto 2.5rem; }
+
+    /* ---------- Footer ---------- */
+    footer {
+      padding: 3rem 1.75rem 2.5rem;
+      border-top: 1px solid var(--border);
+      display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem;
+      font-family: var(--mono); font-size: 0.78rem; color: var(--ink-soft);
+    }
+    footer .logo { font-size: 1.1rem; }
+
+    /* ---------- Reveal (progressive enhancement) ---------- */
+    .reveal { opacity: 1; transform: none; }
+    .js-reveal .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .js-reveal .reveal.visible { opacity: 1; transform: translateY(0); }
+    @media (prefers-reduced-motion: reduce) {
+      .js-reveal .reveal { opacity: 1; transform: none; transition: none; }
+    }
+
+    @media (max-width: 560px) {
+      section { padding: 5rem 0; }
+      .hero-cta-row .btn { width: 100%; justify-content: center; }
+      .calc-row { grid-template-columns: 1fr; }
+      #cta { padding: 5rem 1.5rem; }
+    }
+
+    /* ---------- Footer legal links ---------- */
+    .footer-legal { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .footer-legal a { color: var(--ink-soft); text-decoration: none; font-family: var(--mono); font-size: 0.78rem; }
+    .footer-legal a:hover { color: var(--green-dark); }
+
+    /* ---------- Modal ---------- */
+    .modal[hidden] { display: none; }
+    .modal {
+      position: fixed; inset: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: center;
+      padding: 1rem;
+    }
+    .modal-backdrop {
+      position: absolute; inset: 0;
+      background: rgba(14,15,12,0.72);
+      backdrop-filter: blur(6px);
+      animation: modalFade 0.2s ease;
+    }
+    .modal-panel {
+      position: relative;
+      background: var(--bg);
+      color: var(--ink);
+      border-radius: 30px;
+      max-width: 960px;
+      width: 100%;
+      max-height: 92vh;
+      overflow: auto;
+      padding: 2rem 1.75rem;
+      box-shadow: 0 30px 80px -20px rgba(0,0,0,0.5);
+      animation: modalPop 0.25s ease;
+    }
+    @media (min-width: 720px) { .modal-panel { padding: 2.5rem; } }
+    .modal-close {
+      position: absolute; top: 0.9rem; right: 0.9rem;
+      width: 2.4rem; height: 2.4rem;
+      border: 0; border-radius: 9999px;
+      background: rgba(14,15,12,0.08);
+      color: var(--ink);
+      font-size: 1.4rem; line-height: 1;
+      cursor: pointer;
+      display: grid; place-items: center;
+    }
+    .modal-close:hover { background: rgba(14,15,12,0.14); }
+    .modal-head { margin-bottom: 1.25rem; padding-right: 2.5rem; }
+    .modal-head h2 { font-family: var(--display); font-weight: 900; font-size: clamp(1.6rem, 3vw, 2.2rem); letter-spacing: -0.02em; line-height: 0.95; }
+    .modal-head p { color: var(--ink-soft); font-size: 0.98rem; margin-top: 0.6rem; }
+    .modal-fallback { margin-top: 1rem; font-size: 0.9rem; color: var(--ink-soft); text-align: center; }
+    .modal-fallback a { color: var(--green-dark); font-weight: 600; }
+
+    /* ---------- Contact form ---------- */
+    .contact-form { display: grid; gap: 1rem; }
+    .contact-form label {
+      display: block;
+      font-family: var(--mono); font-size: 0.72rem;
+      text-transform: uppercase; letter-spacing: 0.14em;
+      color: var(--ink-soft);
+      margin-bottom: 0.4rem;
+    }
+    .contact-form input, .contact-form textarea {
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 0.95rem 1.1rem;
+      color: var(--ink);
+      font-family: var(--body);
+      font-size: 1rem;
+      font-weight: 500;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .contact-form input:focus, .contact-form textarea:focus {
+      outline: none;
+      border-color: var(--green);
+      box-shadow: 0 0 0 3px rgba(159,232,112,0.25);
+    }
+    .contact-form textarea { resize: vertical; min-height: 120px; }
+    .contact-form .form-actions { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-top: 0.5rem; }
+    .contact-form .form-note { font-size: 0.85rem; color: var(--ink-soft); margin-top: 0.25rem; }
+    @keyframes modalFade { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes modalPop { from { opacity: 0; transform: translateY(12px) scale(0.98); } to { opacity: 1; transform: none; } }
+    @keyframes checkDraw { from { stroke-dashoffset: 56; } to { stroke-dashoffset: 0; } }
+    @keyframes successFade { from { opacity: 0; transform: scale(0.92); } to { opacity: 1; transform: none; } }
+    .success-state { text-align: center; padding: 2.5rem 0 1.5rem; animation: successFade 0.4s ease; }
+    .success-check { width: 64px; height: 64px; margin: 0 auto 1.25rem; }
+    .success-check circle { fill: none; stroke: var(--green); stroke-width: 2; }
+    .success-check polyline { fill: none; stroke: var(--green); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 56; stroke-dashoffset: 56; animation: checkDraw 0.5s ease 0.25s forwards; }
+    @media (prefers-reduced-motion: reduce) {
+      .modal-backdrop, .modal-panel { animation: none; }
+      .success-state { animation: none; }
+      .success-check polyline { animation: none; stroke-dashoffset: 0; }
+    }
+    body.modal-open { overflow: hidden; }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": ["LocalBusiness", "ProfessionalService"],
+    "@id": "https://ailabs.co.nz",
+    "name": "AiLabs",
+    "url": "https://ailabs.co.nz",
+    "description": "AI agents, business apps and automation for NZ small businesses.",
+    "areaServed": "New Zealand",
+    "address": { "@type": "PostalAddress", "addressLocality": "Christchurch", "addressCountry": "NZ" },
+    "email": "hello@ailabs.co.nz"
+  }
+  </script>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="logo">AiLabs<span class="logo-dot" aria-hidden="true"></span></a>
+  <div class="nav-links">
+    <a href="#why">Why us</a>
+    <a href="#services">What we build</a>
+    <a href="#calc">Savings calculator</a>
+    <a href="#how">How it works</a>
+    <a href="#work">Work</a>
+    <a href="/blog/">Blog</a>
+  </div>
+  <button type="button" class="btn btn-primary" data-open-modal="book">Get in touch <span class="arrow">-></span></button>
+</nav>
+
+<section id="hero">
+  <div class="float-token" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-head">
+        <span class="eyebrow">New Zealand</span>
+        <h1 class="display">AI that <span class="mark">works.</span><br>For businesses<br>that do.</h1>
+        <p class="alt-head hero-sub">You're losing hours to tasks AI should be handling. We build the agents, apps and automations that quietly do the work - fast, affordable, and built to fit your business.</p>
+        <div class="hero-cta-row">
+          <a href="#calc" class="btn btn-primary">See your savings <span class="arrow">-></span></a>
+          <a href="#services" class="btn btn-secondary">What we build</a>
+        </div>
+      </div>
+      <aside class="hero-aside" aria-label="What we ship">
+        <div class="stat-big">10&times;<em> faster.</em></div>
+        <p>We use AI to build, so projects ship in days - not the six-week account-manager marathon you were quoted.</p>
+        <div class="chips">
+          <span class="chip">AI Agents</span>
+          <span class="chip">Business Apps</span>
+          <span class="chip">Automation</span>
+          <span class="chip">Strategy</span>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Stop doing it the hard way <i class="dot"></i> Ship in days, not months <i class="dot"></i> Built in NZ for NZ SMBs <i class="dot"></i> Automate the boring parts <i class="dot"></i></span>
+    <span>Stop doing it the hard way <i class="dot"></i> Ship in days, not months <i class="dot"></i> Built in NZ for NZ SMBs <i class="dot"></i> Automate the boring parts <i class="dot"></i></span>
+  </div>
+</div>
+
+<section id="why">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Why AiLabs</span>
+      <h2 class="display">No strategy decks.<br>No account managers.</h2>
+      <p class="alt-head">Most AI consultants hand you a report and leave. Most dev agencies take months and charge for it. We do neither.</p>
+    </div>
+    <div class="reasons">
+      <div class="reason reveal"><h3>Faster &amp; cheaper</h3><p>We use AI to build, which means less time and less cost than a traditional agency.</p></div>
+      <div class="reason reveal"><h3>Direct access</h3><p>You deal with us directly - no account managers, no handoffs. One team that knows your project inside out.</p></div>
+      <div class="reason reveal"><h3>Tech that fits</h3><p>We understand both the business problem and how to solve it. No generic tools bolted together.</p></div>
+      <div class="reason reveal"><h3>NZ-based</h3><p>Local hours, local context, easy to reach. No offshore delays or communication gaps.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">What we build</span>
+      <h2 class="display">Tools that quietly<br>do the work.</h2>
+      <p class="alt-head">Four shapes of engagement. Pick the one that fits - or we'll tell you which one does.</p>
+    </div>
+    <div class="services-grid">
+      <article class="service reveal">
+        <div>
+          <div class="glyph">◆</div>
+          <h3>AI Agents</h3>
+          <p>Software that thinks on its own - handling tasks, making decisions and sending messages while you get on with the real work.</p>
+        </div>
+        <span class="num">01 / Agent</span>
+      </article>
+      <article class="service reveal">
+        <div>
+          <div class="glyph">▢</div>
+          <h3>Business Apps</h3>
+          <p>Off-the-shelf tools don't fit every business. We build what you actually need - without the agency price tag.</p>
+        </div>
+        <span class="num">02 / App</span>
+      </article>
+      <article class="service reveal">
+        <div>
+          <div class="glyph">↻</div>
+          <h3>Automation</h3>
+          <p>Your systems should talk to each other. We connect them, cut the manual steps, and give you your time back.</p>
+        </div>
+        <span class="num">03 / Flow</span>
+      </article>
+      <article class="service reveal">
+        <div>
+          <div class="glyph">✦</div>
+          <h3>Strategy &amp; Advice</h3>
+          <p>Not sure where to start? We'll look at how your business runs and tell you exactly where AI will help most.</p>
+        </div>
+        <span class="num">04 / Plan</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="calc" aria-labelledby="calc-title">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Time saver calculator</span>
+      <h2 class="display" id="calc-title">How much is<br>that task really<br>costing you?</h2>
+      <p class="alt-head">Tell us what you (or someone on your team) does repeatedly. We'll show you what it costs, what AiLabs costs, and when it pays itself back.</p>
+    </div>
+
+    <div class="calc-grid">
+      <form class="calc-form" id="calcForm" onsubmit="return false;">
+        <label for="task">The task</label>
+        <input id="task" type="text" placeholder="e.g. Sending quote follow-ups" autocomplete="off" />
+
+        <label for="time">How long it takes</label>
+        <div class="calc-row">
+          <input id="time" type="number" min="0" step="0.5" placeholder="Hours" inputmode="decimal" />
+          <select id="unit" aria-label="Per">
+            <option value="day">per day</option>
+            <option value="week" selected>per week</option>
+            <option value="month">per month</option>
+          </select>
+        </div>
+
+        <label for="rate">Hourly cost (NZD)</label>
+        <input id="rate" type="number" min="0" step="1" placeholder="e.g. 45" inputmode="decimal" />
+        <p class="hint">Use the fully-loaded rate - salary plus overheads.</p>
+
+        <div style="margin-top:1.75rem; display:flex; gap:0.6rem; flex-wrap:wrap;">
+          <button type="button" class="btn btn-primary" id="calcBtn">Calculate savings <span class="arrow">-></span></button>
+          <button type="button" class="btn btn-secondary" id="calcReset" style="background:rgba(255,255,255,0.08); color:var(--bg);">Reset</button>
+        </div>
+      </form>
+
+      <div class="calc-result" id="calcResult" aria-live="polite">
+        <div>
+          <div class="result-lead">Your first-year savings</div>
+          <div class="result-big" id="savingsBig">$-<small id="savingsSmall">Fill in the form to see the numbers.</small></div>
+        </div>
+        <div class="result-rows" id="resultRows" hidden>
+          <div class="result-row"><span>Hours reclaimed / year</span><span id="rHours">-</span></div>
+          <div class="result-row"><span>Current cost / month</span><span id="rMonthly">-</span></div>
+          <div class="result-row"><span>AiLabs year-one cost</span><span id="rAilabs">-</span></div>
+          <div class="result-row accent"><span>Payback period</span><span id="rPayback">-</span></div>
+        </div>
+        <div class="result-cta">
+          <button type="button" class="btn btn-primary" data-open-modal="book">Get in touch about this <span class="arrow">-></span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">How it works</span>
+      <h2 class="display">Three steps.<br>No drawn-out process.</h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><div class="step-num">01</div><div><h3>You reach out</h3><p>Tell us where time gets lost. We'll reply and set up a call that works around your schedule. Free, no pitch, no pressure.</p></div></div>
+      <div class="step reveal"><div class="step-num">02</div><div><h3>We build</h3><p>Fast. Scoped. No bloat. No six-week project plans. We use AI to build, so it costs less and ships sooner.</p></div></div>
+      <div class="step reveal"><div class="step-num">03</div><div><h3>You run it</h3><p>A tool built for your business, that your team can use from day one. We don't move on until it works.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <div class="about-grid reveal">
+      <div>
+        <span class="eyebrow">Who we are</span>
+        <h2 class="display" style="margin-top:1.5rem;">Built by someone<br>who's been in<br>the engine room.</h2>
+      </div>
+      <div class="about-body">
+        <p>Dan spent seven years as a Service Delivery Manager at a Christchurch IT firm - managing technology for the kind of businesses AiLabs now serves. He's seen firsthand where time gets wasted, where things break, and what a business owner actually needs from their tech.</p>
+        <p>AiLabs is what happens when that experience meets AI. Not a consultancy handing you a report. Not an offshore dev shop. Someone who knows NZ SMBs, knows the tech, and builds things fast.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">What we've shipped</span>
+      <h2 class="display">Built by us.<br>Used by real<br>businesses.</h2>
+    </div>
+    <div class="work-grid">
+      <a href="#work" class="work-card reveal" aria-disabled="true"><span class="tag">AI Agent</span><h3>Project Name One</h3><p>One line describing what this product does and who it's for.</p><span class="link">See it live -></span></a>
+      <a href="#work" class="work-card reveal" aria-disabled="true"><span class="tag">Automation</span><h3>Project Name Two</h3><p>One line describing what this product does and who it's for.</p><span class="link">See it live -></span></a>
+      <a href="#work" class="work-card reveal" aria-disabled="true"><span class="tag">Business App</span><h3>Project Name Three</h3><p>One line describing what this product does and who it's for.</p><span class="link">See it live -></span></a>
+    </div>
+  </div>
+</section>
+
+<section id="cta">
+  <div class="wrap">
+    <span class="eyebrow" style="background:rgba(22,51,0,0.12); color:var(--green-dark);">Get started</span>
+    <h2 class="display" style="margin-top:1.25rem;">Ready to stop<br>doing it the<br>hard way?</h2>
+    <p class="alt-head">Drop us a message. We'll find one thing AI can fix in your business - no pitch, no obligation.</p>
+    <button type="button" class="btn btn-dark" data-open-modal="book">Get in touch <span class="arrow">-></span></button>
+  </div>
+</section>
+
+<footer>
+  <a href="#" class="logo">AiLabs<span class="logo-dot"></span></a>
+  <nav class="footer-legal" aria-label="Legal">
+    <a href="privacy.html">Privacy</a>
+    <a href="terms.html">Terms</a>
+    <a href="data-deletion.html">Data deletion</a>
+  </nav>
+  <p>© 2026 AiLabs · New Zealand · hello@ailabs.co.nz</p>
+</footer>
+
+<div id="bookModal" class="modal" hidden role="dialog" aria-modal="true" aria-labelledby="bookModalTitle">
+  <div class="modal-backdrop" data-modal-close></div>
+  <div class="modal-panel">
+    <button type="button" class="modal-close" data-modal-close aria-label="Close">×</button>
+    <div class="modal-head">
+      <h2 id="bookModalTitle">Get in touch</h2>
+      <p id="bookModalSubtitle">Drop your details and we'll check out your site. No pitch, no pressure.</p>
+    </div>
+    <form class="contact-form" id="contactForm" onsubmit="return false;">
+      <!-- honeypot: hidden from real users, bots fill it -->
+      <input id="contactHoneypot" name="website2" tabindex="-1" autocomplete="off"
+             style="position:absolute;left:-9999px;height:0;width:0;opacity:0;" aria-hidden="true" />
+      <div>
+        <label for="contactName">Your name</label>
+        <input id="contactName" type="text" placeholder="e.g. Sarah" autocomplete="name" required maxlength="100" />
+      </div>
+      <div>
+        <label for="contactEmail">Email</label>
+        <input id="contactEmail" type="email" placeholder="e.g. sarah@example.co.nz" autocomplete="email" required maxlength="254" />
+      </div>
+      <div>
+        <label for="contactWebsite">Company website</label>
+        <input id="contactWebsite" type="url" placeholder="e.g. https://example.co.nz" autocomplete="url" required maxlength="500" />
+      </div>
+      <div>
+        <label for="contactCostSavings">What are you trying to save costs on? (optional)</label>
+        <textarea id="contactCostSavings" placeholder="e.g. manual data entry, customer support, reporting..." maxlength="2000"></textarea>
+      </div>
+      <div class="form-actions">
+        <button type="button" class="btn btn-primary" id="contactSend">Send message <span class="arrow">-></span></button>
+      </div>
+      <p class="form-note">We'll check out your site and reply with ideas tailored to your business.</p>
+    </form>
+  </div>
+</div>
+
+<script>
+  // ---- Reveal on scroll (opt-in via js-reveal; content stays visible if JS is slow/off) ----
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.documentElement.classList.add('js-reveal');
+    const reveals = document.querySelectorAll('.reveal');
+    const show = (el, i = 0) => setTimeout(() => el.classList.add('visible'), i * 60);
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) { show(entry.target, i); io.unobserve(entry.target); }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -5% 0px' });
+    reveals.forEach(el => io.observe(el));
+    // Safety net: after 2.5s, force anything still hidden to visible (covers headless capture & slow scrolls)
+    setTimeout(() => reveals.forEach(el => el.classList.add('visible')), 2500);
+  }
+
+  // ---- Time Saver Calculator ----
+  const PRICE_UPFRONT = 600;
+  const PRICE_MONTHLY = 149;
+
+  const $ = (id) => document.getElementById(id);
+  const nz = new Intl.NumberFormat('en-NZ', { style: 'currency', currency: 'NZD', maximumFractionDigits: 0 });
+  const num = new Intl.NumberFormat('en-NZ', { maximumFractionDigits: 0 });
+
+  function calcSavings() {
+    const task = ($('task').value || '').trim() || 'this task';
+    const time = parseFloat($('time').value);
+    const unit = $('unit').value;
+    const rate = parseFloat($('rate').value);
+
+    if (!isFinite(time) || time <= 0 || !isFinite(rate) || rate <= 0) {
+      $('savingsBig').innerHTML = '$-<small>Enter hours and an hourly rate to see the numbers.</small>';
+      $('resultRows').hidden = true;
+      return;
+    }
+
+    // Convert time to hours per month
+    let hoursPerMonth;
+    if (unit === 'day') hoursPerMonth = time * 21.7;      // workdays
+    else if (unit === 'week') hoursPerMonth = time * 4.33;
+    else hoursPerMonth = time;
+
+    const monthlyCost = hoursPerMonth * rate;
+    const annualCost = monthlyCost * 12;
+    const annualHours = hoursPerMonth * 12;
+    const ailabsYear1 = PRICE_UPFRONT + PRICE_MONTHLY * 12;
+    const year1Savings = annualCost - ailabsYear1;
+
+    let paybackText;
+    if (monthlyCost <= PRICE_MONTHLY) {
+      paybackText = 'Volume too low to pay back';
+    } else {
+      const monthsToPayback = PRICE_UPFRONT / (monthlyCost - PRICE_MONTHLY);
+      paybackText = monthsToPayback < 1 ? 'Under 1 month' : Math.ceil(monthsToPayback) + ' months';
+    }
+
+    const savingsLabel = year1Savings >= 0
+      ? `${nz.format(year1Savings)}`
+      : `−${nz.format(Math.abs(year1Savings))}`;
+
+    $('savingsBig').innerHTML =
+      `${savingsLabel}<small>on <strong style="color:var(--bg);">${escapeHtml(task)}</strong> in the first 12 months</small>`;
+
+    $('rHours').textContent = num.format(Math.round(annualHours)) + ' hrs';
+    $('rMonthly').textContent = nz.format(Math.round(monthlyCost));
+    $('rAilabs').textContent = nz.format(ailabsYear1) + ' / yr';
+    $('rPayback').textContent = paybackText;
+    $('resultRows').hidden = false;
+  }
+
+  function escapeHtml(s) {
+    return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+
+  $('calcBtn').addEventListener('click', calcSavings);
+  $('calcForm').addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); calcSavings(); }});
+  ['time','unit','rate','task'].forEach(id => $(id).addEventListener('input', () => {
+    if ($('time').value && $('rate').value) calcSavings();
+  }));
+  $('calcReset').addEventListener('click', () => {
+    ['task','time','rate'].forEach(id => $(id).value = '');
+    $('unit').value = 'week';
+    $('savingsBig').innerHTML = '$-<small>Fill in the form to see the numbers.</small>';
+    $('resultRows').hidden = true;
+  });
+
+  // ---- Contact modal ----
+  const modal = $('bookModal');
+  let lastTrigger = null;
+
+  function openModal(trigger) {
+    lastTrigger = trigger || null;
+    modal.hidden = false;
+    document.body.classList.add('modal-open');
+    setTimeout(() => $('contactName').focus(), 0);
+  }
+
+  // ---- Contact form -> n8n webhook ----
+  const WEBHOOK_URL = 'https://n8n.tovizi.com/webhook/ailabs-contact';
+  const sendBtn = $('contactSend');
+  let lastSent = 0;
+
+  sendBtn.addEventListener('click', async () => {
+    const name = ($('contactName').value || '').trim();
+    const email = ($('contactEmail').value || '').trim();
+    const website = ($('contactWebsite').value || '').trim();
+    const costSavings = ($('contactCostSavings').value || '').trim();
+
+    if ($('contactHoneypot').value) return;
+
+    if (Date.now() - lastSent < 30_000) return;
+
+    if (!name || !email || !website) {
+      $('contactForm').querySelectorAll('input').forEach(el => el.reportValidity());
+      return;
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      $('contactEmail').setCustomValidity('Please enter a valid email address.');
+      $('contactEmail').reportValidity();
+      $('contactEmail').setCustomValidity('');
+      return;
+    }
+
+    let websiteOk = false;
+    try { websiteOk = ['http:', 'https:'].includes(new URL(website).protocol); } catch {}
+    if (!websiteOk) {
+      $('contactWebsite').setCustomValidity('Please enter a full URL starting with https://');
+      $('contactWebsite').reportValidity();
+      $('contactWebsite').setCustomValidity('');
+      return;
+    }
+
+    sendBtn.disabled = true;
+    sendBtn.innerHTML = 'Sending\u2026';
+
+    try {
+      const res = await fetch(WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, website, costSavings }),
+      });
+      if (!res.ok) throw new Error('Server error');
+
+      lastSent = Date.now();
+      $('bookModalTitle').hidden = true;
+      $('bookModalSubtitle').hidden = true;
+      $('contactForm').innerHTML =
+        '<div class="success-state">' +
+        '<svg class="success-check" viewBox="0 0 64 64" aria-hidden="true">' +
+        '<circle cx="32" cy="32" r="30"/>' +
+        '<polyline points="20,34 28,42 44,24"/>' +
+        '</svg>' +
+        '<h3 style="font-family:var(--display);font-weight:900;font-size:1.6rem;margin-bottom:0.5rem;">Detected incoming message. Beep boop beep. Notifying the human.</h3>' +
+        '<p style="color:var(--ink-soft);">We\'ll come back with ideas that fit your business. Talk soon.</p>' +
+        '</div>';
+    } catch (err) {
+      sendBtn.disabled = false;
+      sendBtn.innerHTML = 'Send message <span class="arrow">\u2192</span>';
+      const existing = $('contactForm').querySelector('.form-error');
+      if (existing) existing.remove();
+      const errEl = document.createElement('p');
+      errEl.className = 'form-error';
+      errEl.style.cssText = 'color:#c0392b;font-size:0.9rem;margin-top:0.5rem;';
+      errEl.textContent = 'Something went wrong. Please try again or email hello@ailabs.co.nz directly.';
+      sendBtn.parentElement.after(errEl);
+    }
+  });
+
+  function closeModal() {
+    modal.hidden = true;
+    document.body.classList.remove('modal-open');
+    if (lastTrigger && typeof lastTrigger.focus === 'function') lastTrigger.focus();
+  }
+
+  document.addEventListener('click', (e) => {
+    const opener = e.target.closest('[data-open-modal="book"]');
+    if (opener) { e.preventDefault(); openModal(opener); return; }
+    if (e.target.closest('[data-modal-close]')) { closeModal(); }
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !modal.hidden) closeModal();
+    // focus trap
+    if (e.key === 'Tab' && !modal.hidden) {
+      const focusables = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+      if (!focusables.length) return;
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  });
+</script>
+</body>
+</html>
