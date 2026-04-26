@@ -200,28 +200,36 @@
     }
     @keyframes drift { 0%,100% { transform: translate(0,0); } 50% { transform: translate(-20px, 18px); } }
 
-    /* ---------- Marquee ---------- */
-    .marquee {
+    /* ---------- Value Cycler (Style 11 Refined) ---------- */
+    .value-cycler {
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
-      background: var(--ink);
-      color: var(--bg);
+      background: var(--bg);
+      padding: 5rem 0;
+      text-align: center;
       overflow: hidden;
-      padding: 1.3rem 0;
     }
-    .marquee-track {
-      display: flex; gap: 3.5rem;
-      white-space: nowrap;
-      animation: scroll 40s linear infinite;
+    .cycler-text {
       font-family: var(--display);
       font-weight: 900;
-      font-size: clamp(1.6rem, 3vw, 2.4rem);
-      line-height: 1;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      text-transform: uppercase;
+      color: var(--ink);
+      line-height: 1.1;
       letter-spacing: -0.02em;
+      display: inline-block;
+      width: 100%;
     }
-    .marquee-track span { display: inline-flex; align-items: center; gap: 3.5rem; }
-    .marquee-track .dot { width: 0.55rem; height: 0.55rem; background: var(--green); border-radius: 9999px; }
-    @keyframes scroll { from { transform: translateX(0);} to { transform: translateX(-50%);} }
+    .cycler-text .mark { color: var(--green); }
+    
+    @keyframes flapShuffle {
+        0% { transform: rotateX(90deg); opacity: 0; filter: blur(8px); }
+        100% { transform: rotateX(0deg); opacity: 1; filter: blur(0); }
+    }
+    .cycler-animated {
+        display: inline-block;
+        animation: flapShuffle 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    }
 
     /* ---------- Section head ---------- */
     .section-head { display: grid; gap: 1.25rem; margin-bottom: 3.5rem; }
@@ -623,12 +631,13 @@
   </div>
 </section>
 
-<div class="marquee" aria-hidden="true">
-  <div class="marquee-track">
-    <span>Stop doing it the hard way <i class="dot"></i> Ship in days, not months <i class="dot"></i> Built in NZ for NZ SMBs <i class="dot"></i> Automate the boring parts <i class="dot"></i></span>
-    <span>Stop doing it the hard way <i class="dot"></i> Ship in days, not months <i class="dot"></i> Built in NZ for NZ SMBs <i class="dot"></i> Automate the boring parts <i class="dot"></i></span>
+<section class="value-cycler" aria-label="Key business benefits">
+  <div class="wrap">
+    <div class="cycler-text" id="valueTarget">
+      <span class="mark">Built in NZ</span> for NZ SMBs
+    </div>
   </div>
-</div>
+</section>
 
 <section id="why">
   <div class="wrap">
@@ -894,12 +903,31 @@
       <div class="form-actions">
         <button type="button" class="btn btn-primary" id="contactSend">Send message <span class="arrow">-></span></button>
       </div>
-      <p class="form-note">We'll check out your site and reply with ideas tailored to your business.</p>
-    </form>
+    </div>
   </div>
 </div>
 
-<script>
+  <script>
+    // Value Cycler Logic
+    const target = document.getElementById('valueTarget');
+    const phrases = [
+        "<span class='mark'>Built in NZ</span> for NZ SMBs",
+        "Ship in <span class='mark'>days</span>, not months",
+        "Automate the <span class='mark'>boring</span> parts",
+        "Stop doing it <span class='mark'>the hard way</span>"
+    ];
+    let index = 0;
+
+    function cycleValue() {
+        index = (index + 1) % phrases.length;
+        target.classList.remove('cycler-animated');
+        void target.offsetWidth; // trigger reflow
+        target.classList.add('cycler-animated');
+        target.innerHTML = phrases[index];
+    }
+    setInterval(cycleValue, 3500);
+
+    // Fade reveal animation
   // ---- Reveal on scroll (opt-in via js-reveal; content stays visible if JS is slow/off) ----
   if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     document.documentElement.classList.add('js-reveal');
