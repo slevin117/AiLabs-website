@@ -1,0 +1,20 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="512" height="512" rx="100" fill="#0E0F0C"/>
+  
+  <!-- Logic Paths (Blueprint Lines) -->
+  <path d="M140 256H200" stroke="#9FE870" stroke-width="12" stroke-linecap="round" opacity="0.4"/>
+  <path d="M312 256H372" stroke="#9FE870" stroke-width="12" stroke-linecap="round" opacity="0.4"/>
+  
+  <path d="M256 186V226" stroke="#9FE870" stroke-width="12" stroke-linecap="round" opacity="0.4"/>
+  <path d="M256 286V326" stroke="#9FE870" stroke-width="12" stroke-linecap="round" opacity="0.4"/>
+  
+  <!-- Central Architecture Node -->
+  <rect x="200" y="226" width="112" height="60" rx="8" stroke="#9FE870" stroke-width="16"/>
+  <circle cx="256" cy="256" r="12" fill="#9FE870"/>
+
+  <!-- Satellite Nodes -->
+  <circle cx="256" cy="156" r="30" stroke="#9FE870" stroke-width="12"/>
+  <circle cx="256" cy="356" r="30" stroke="#9FE870" stroke-width="12"/>
+  <circle cx="110" cy="256" r="30" stroke="#9FE870" stroke-width="12"/>
+  <circle cx="402" cy="256" r="30" stroke="#9FE870" stroke-width="12"/>
+</svg>
