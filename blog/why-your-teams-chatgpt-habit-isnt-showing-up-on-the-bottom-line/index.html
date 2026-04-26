@@ -49,13 +49,24 @@
       padding: 1rem 1.75rem; background: rgba(247,248,244,0.97); backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
     }
-    .logo { font-family: var(--display); font-weight: 900; font-size: 1.4rem; text-decoration: none; color: var(--ink); display: flex; align-items: baseline; gap: 0.1rem; }
-    .logo-dot { width: 0.45rem; height: 0.45rem; background: var(--green); border-radius: 50%; }
-    .btn { font-family: var(--body); font-weight: 600; padding: 0.8rem 1.5rem; border-radius: 99px; text-decoration: none; background: var(--green); color: var(--green-dark); transition: transform 0.2s; }
-    .btn:hover { transform: scale(1.05); }
+    .logo { font-family: var(--display); font-weight: 900; font-size: 1.4rem; letter-spacing: -0.03em; line-height: 1; text-decoration: none; color: var(--ink); display: inline-flex; align-items: baseline; gap: 0.1rem; }
+    .logo-dot { width: 0.45rem; height: 0.45rem; background: var(--green); border-radius: 9999px; display: inline-block; }
+    .nav-links { display: none; gap: 2rem; }
+    .nav-links a { color: var(--ink); text-decoration: none; font-size: 0.95rem; font-weight: 600; }
+    .nav-links a:hover { color: var(--green-dark); }
+    @media (min-width: 860px) { .nav-links { display: flex; } }
+    .btn { display: inline-flex; align-items: center; gap: 0.55rem; font-family: var(--body); font-weight: 600; font-size: 1rem; padding: 0.9rem 1.6rem; border-radius: 9999px; border: 0; text-decoration: none; cursor: pointer; transition: transform 0.18s ease, background 0.2s ease; }
+    .btn-primary { background: var(--green); color: var(--green-dark); }
+    .btn-primary:hover { transform: scale(1.05); }
+    .btn .arrow { display: inline-block; transition: transform 0.2s ease; }
+    .btn:hover .arrow { transform: translateX(3px); }
+    .breadcrumb { position: static; background: none; backdrop-filter: none; border-bottom: none; padding: 0; z-index: auto; display: flex; align-items: center; gap: 0.5rem; font-family: var(--mono); font-size: 0.72rem; color: var(--ink-dim); margin-bottom: 2.5rem; }
+    .breadcrumb a { color: var(--ink-dim); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--ink); }
+    .breadcrumb span { color: var(--ink-dim); }
 
     /* Content */
-    article { padding: 6rem 0; }
+    article { padding: 4rem 0 6rem; }
     header { margin-bottom: 4rem; }
     .tag { font-family: var(--mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--green-dark); background: var(--mint); padding: 0.4rem 0.8rem; border-radius: 99px; display: inline-block; margin-bottom: 1.5rem; }
     h1 { font-family: var(--display); font-weight: 900; font-size: clamp(2.5rem, 8vw, 4.5rem); line-height: 0.95; letter-spacing: -0.03em; margin-bottom: 2rem; }
@@ -74,11 +85,26 @@
 </head>
 <body>
   <nav>
-    <a href="/" class="logo">AiLabs<span class="logo-dot"></span></a>
-    <a href="/#cta" class="btn">Get in touch - </a>
+    <a href="/" class="logo">AiLabs<span class="logo-dot" aria-hidden="true"></span></a>
+    <div class="nav-links">
+      <a href="/#why">Why us</a>
+      <a href="/#services">What we build</a>
+      <a href="/#calc">Savings calculator</a>
+      <a href="/#how">How it works</a>
+      <a href="/#work">Work</a>
+      <a href="/blog/" aria-current="page">Blog</a>
+    </div>
+    <a href="/#cta" class="btn btn-primary">Get in touch <span class="arrow">→</span></a>
   </nav>
 
   <article class="wrap">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span>›</span>
+      <a href="/blog/">Blog</a>
+      <span>›</span>
+      <span>Why your team's ChatGPT habit isn't showing up on the bottom line</span>
+    </nav>
     <header>
       <span class="tag">Efficiency</span>
       <h1>Why your team's ChatGPT habit isn't showing up on the bottom line</h1>
