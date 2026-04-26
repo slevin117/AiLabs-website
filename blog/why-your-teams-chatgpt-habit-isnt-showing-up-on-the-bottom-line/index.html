@@ -65,6 +65,76 @@
     .breadcrumb a:hover { color: var(--ink); }
     .breadcrumb span { color: var(--ink-dim); }
 
+    /* ---------- Modal ---------- */
+    .modal[hidden] { display: none; }
+    .modal {
+      position: fixed; inset: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: center;
+      padding: 1rem;
+    }
+    .modal-backdrop {
+      position: absolute; inset: 0;
+      background: rgba(14,15,12,0.72);
+      backdrop-filter: blur(6px);
+      animation: modalFade 0.2s ease;
+    }
+    .modal-panel {
+      position: relative;
+      background: var(--bg); color: var(--ink);
+      border-radius: 30px; max-width: 960px; width: 100%;
+      max-height: 92vh; overflow: auto;
+      padding: 2rem 1.75rem;
+      box-shadow: 0 30px 80px -20px rgba(0,0,0,0.5);
+      animation: modalPop 0.25s ease;
+    }
+    @media (min-width: 720px) { .modal-panel { padding: 2.5rem; } }
+    .modal-close {
+      position: absolute; top: 0.9rem; right: 0.9rem;
+      width: 2.4rem; height: 2.4rem;
+      border: 0; border-radius: 9999px;
+      background: rgba(14,15,12,0.08); color: var(--ink);
+      font-size: 1.4rem; line-height: 1;
+      cursor: pointer; display: grid; place-items: center;
+    }
+    .modal-close:hover { background: rgba(14,15,12,0.14); }
+    .modal-head { margin-bottom: 1.25rem; padding-right: 2.5rem; }
+    .modal-head h2 { font-family: var(--display); font-weight: 900; font-size: clamp(1.6rem, 3vw, 2.2rem); letter-spacing: -0.02em; line-height: 0.95; }
+    .modal-head p { color: var(--ink-soft); font-size: 0.98rem; margin-top: 0.6rem; }
+    .contact-form { display: grid; gap: 1rem; }
+    .contact-form label {
+      display: block;
+      font-family: var(--mono); font-size: 0.72rem;
+      text-transform: uppercase; letter-spacing: 0.14em;
+      color: var(--ink-soft); margin-bottom: 0.4rem;
+    }
+    .contact-form input, .contact-form textarea {
+      width: 100%; background: var(--surface);
+      border: 1px solid var(--border); border-radius: 14px;
+      padding: 0.95rem 1.1rem; color: var(--ink);
+      font-family: var(--body); font-size: 1rem; font-weight: 500;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .contact-form input:focus, .contact-form textarea:focus {
+      outline: none; border-color: var(--green);
+      box-shadow: 0 0 0 3px rgba(159,232,112,0.25);
+    }
+    .contact-form textarea { resize: vertical; min-height: 120px; }
+    .contact-form .form-actions { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-top: 0.5rem; }
+    @keyframes modalFade { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes modalPop { from { opacity: 0; transform: translateY(12px) scale(0.98); } to { opacity: 1; transform: none; } }
+    @keyframes checkDraw { from { stroke-dashoffset: 56; } to { stroke-dashoffset: 0; } }
+    @keyframes successFade { from { opacity: 0; transform: scale(0.92); } to { opacity: 1; transform: none; } }
+    .success-state { text-align: center; padding: 2.5rem 0 1.5rem; animation: successFade 0.4s ease; }
+    .success-check { width: 64px; height: 64px; margin: 0 auto 1.25rem; }
+    .success-check circle { fill: none; stroke: var(--green); stroke-width: 2; }
+    .success-check polyline { fill: none; stroke: var(--green); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 56; stroke-dashoffset: 56; animation: checkDraw 0.5s ease 0.25s forwards; }
+    @media (prefers-reduced-motion: reduce) {
+      .modal-backdrop, .modal-panel { animation: none; }
+      .success-state { animation: none; }
+      .success-check polyline { animation: none; stroke-dashoffset: 0; }
+    }
+    body.modal-open { overflow: hidden; }
+
     /* Content */
     article { padding: 4rem 0 6rem; }
     header { margin-bottom: 4rem; }
@@ -94,7 +164,7 @@
       <a href="/#work">Work</a>
       <a href="/blog/" aria-current="page">Blog</a>
     </div>
-    <a href="/#cta" class="btn btn-primary">Get in touch <span class="arrow">→</span></a>
+    <button type="button" class="btn btn-primary" data-open-modal="book">Get in touch <span class="arrow">→</span></button>
   </nav>
 
   <article class="wrap">
@@ -162,5 +232,145 @@
     <a href="/" class="logo">AiLabs<span class="logo-dot"></span></a>
     <p class="footer-copy">© 2026 AiLabs · hello@ailabs.co.nz</p>
   </footer>
+
+<div id="bookModal" class="modal" hidden role="dialog" aria-modal="true" aria-labelledby="bookModalTitle">
+  <div class="modal-backdrop" data-modal-close></div>
+  <div class="modal-panel">
+    <button type="button" class="modal-close" data-modal-close aria-label="Close">×</button>
+    <div class="modal-head">
+      <h2 id="bookModalTitle">Get in touch</h2>
+      <p id="bookModalSubtitle">Drop your details and we'll check out your site. No pitch, no pressure.</p>
+    </div>
+    <form class="contact-form" id="contactForm" onsubmit="return false;">
+      <input id="contactHoneypot" name="website2" tabindex="-1" autocomplete="off"
+             style="position:absolute;left:-9999px;height:0;width:0;opacity:0;" aria-hidden="true" />
+      <div>
+        <label for="contactName">Your name</label>
+        <input id="contactName" type="text" placeholder="e.g. Sarah" autocomplete="name" required maxlength="100" />
+      </div>
+      <div>
+        <label for="contactEmail">Email</label>
+        <input id="contactEmail" type="email" placeholder="e.g. sarah@example.co.nz" autocomplete="email" required maxlength="254" />
+      </div>
+      <div>
+        <label for="contactWebsite">Company website</label>
+        <input id="contactWebsite" type="url" placeholder="e.g. https://example.co.nz" autocomplete="url" required maxlength="500" />
+      </div>
+      <div>
+        <label for="contactCostSavings">What are you trying to save costs on? (optional)</label>
+        <textarea id="contactCostSavings" placeholder="e.g. manual data entry, customer support, reporting..." maxlength="2000"></textarea>
+      </div>
+      <div class="form-actions">
+        <button type="button" class="btn btn-primary" id="contactSend">Send message <span class="arrow">→</span></button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  const $ = (id) => document.getElementById(id);
+  const modal = $('bookModal');
+  let lastTrigger = null;
+
+  function openModal(trigger) {
+    lastTrigger = trigger || null;
+    modal.hidden = false;
+    document.body.classList.add('modal-open');
+    setTimeout(() => $('contactName').focus(), 0);
+  }
+
+  function closeModal() {
+    modal.hidden = true;
+    document.body.classList.remove('modal-open');
+    if (lastTrigger && typeof lastTrigger.focus === 'function') lastTrigger.focus();
+  }
+
+  const WEBHOOK_URL = 'https://n8n.tovizi.com/webhook/ailabs-contact';
+  const sendBtn = $('contactSend');
+  let lastSent = 0;
+
+  sendBtn.addEventListener('click', async () => {
+    const name = ($('contactName').value || '').trim();
+    const email = ($('contactEmail').value || '').trim();
+    const website = ($('contactWebsite').value || '').trim();
+    const costSavings = ($('contactCostSavings').value || '').trim();
+
+    if ($('contactHoneypot').value) return;
+    if (Date.now() - lastSent < 30_000) return;
+
+    if (!name || !email || !website) {
+      $('contactForm').querySelectorAll('input').forEach(el => el.reportValidity());
+      return;
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      $('contactEmail').setCustomValidity('Please enter a valid email address.');
+      $('contactEmail').reportValidity();
+      $('contactEmail').setCustomValidity('');
+      return;
+    }
+
+    let websiteOk = false;
+    try { websiteOk = ['http:', 'https:'].includes(new URL(website).protocol); } catch {}
+    if (!websiteOk) {
+      $('contactWebsite').setCustomValidity('Please enter a full URL starting with https://');
+      $('contactWebsite').reportValidity();
+      $('contactWebsite').setCustomValidity('');
+      return;
+    }
+
+    sendBtn.disabled = true;
+    sendBtn.innerHTML = 'Sending…';
+
+    try {
+      const res = await fetch(WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, website, costSavings }),
+      });
+      if (!res.ok) throw new Error('Server error');
+
+      lastSent = Date.now();
+      $('bookModalTitle').hidden = true;
+      $('bookModalSubtitle').hidden = true;
+      $('contactForm').innerHTML =
+        '<div class="success-state">' +
+        '<svg class="success-check" viewBox="0 0 64 64" aria-hidden="true">' +
+        '<circle cx="32" cy="32" r="30"/>' +
+        '<polyline points="20,34 28,42 44,24"/>' +
+        '</svg>' +
+        '<h3 style="font-family:var(--display);font-weight:900;font-size:1.6rem;margin-bottom:0.5rem;">Detected incoming message. Beep boop beep. Notifying the human.</h3>' +
+        '<p style="color:var(--ink-soft);">We\'ll come back with ideas that fit your business. Talk soon.</p>' +
+        '</div>';
+    } catch (err) {
+      sendBtn.disabled = false;
+      sendBtn.innerHTML = 'Send message <span class="arrow">→</span>';
+      const existing = $('contactForm').querySelector('.form-error');
+      if (existing) existing.remove();
+      const errEl = document.createElement('p');
+      errEl.className = 'form-error';
+      errEl.style.cssText = 'color:#c0392b;font-size:0.9rem;margin-top:0.5rem;';
+      errEl.textContent = 'Something went wrong. Please try again or email hello@ailabs.co.nz directly.';
+      sendBtn.parentElement.after(errEl);
+    }
+  });
+
+  document.addEventListener('click', (e) => {
+    const opener = e.target.closest('[data-open-modal="book"]');
+    if (opener) { e.preventDefault(); openModal(opener); return; }
+    if (e.target.closest('[data-modal-close]')) { closeModal(); }
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !modal.hidden) closeModal();
+    if (e.key === 'Tab' && !modal.hidden) {
+      const focusables = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+      if (!focusables.length) return;
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  });
+</script>
 </body>
 </html>
