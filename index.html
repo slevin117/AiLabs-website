@@ -1065,10 +1065,13 @@
       return;
     }
 
+    let websiteUrl = website;
+    if (!/^https?:\/\//i.test(websiteUrl)) websiteUrl = 'https://' + websiteUrl;
+
     let websiteOk = false;
-    try { websiteOk = ['http:', 'https:'].includes(new URL(website).protocol); } catch {}
+    try { websiteOk = ['http:', 'https:'].includes(new URL(websiteUrl).protocol); } catch {}
     if (!websiteOk) {
-      $('contactWebsite').setCustomValidity('Please enter a full URL starting with https://');
+      $('contactWebsite').setCustomValidity('Please enter a valid website URL.');
       $('contactWebsite').reportValidity();
       $('contactWebsite').setCustomValidity('');
       return;
@@ -1081,7 +1084,7 @@
       const res = await fetch(WEBHOOK_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, website, costSavings, cfToken }),
+        body: JSON.stringify({ name, email, website: websiteUrl, costSavings, cfToken }),
       });
       if (!res.ok) throw new Error('Server error');
 
