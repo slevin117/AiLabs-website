@@ -21,6 +21,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
   <noscript><link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" /></noscript>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -900,6 +901,7 @@
         <label for="contactCostSavings">What are you trying to save costs on? (optional)</label>
         <textarea id="contactCostSavings" placeholder="e.g. manual data entry, customer support, reporting..." maxlength="2000"></textarea>
       </div>
+      <div class="cf-turnstile" data-sitekey="0x4AAAAAADELfsxMfg5_wYaR" data-theme="light"></div>
       <div class="form-actions">
         <button type="button" class="btn btn-primary" id="contactSend">Send message <span class="arrow">-></span></button>
       </div>
@@ -1034,8 +1036,20 @@
     const email = ($('contactEmail').value || '').trim();
     const website = ($('contactWebsite').value || '').trim();
     const costSavings = ($('contactCostSavings').value || '').trim();
+    const cfToken = (document.querySelector('[name="cf-turnstile-response"]')?.value || '').trim();
 
     if ($('contactHoneypot').value) return;
+
+    if (!cfToken) {
+      const existing = $('contactForm').querySelector('.form-error');
+      if (existing) existing.remove();
+      const errEl = document.createElement('p');
+      errEl.className = 'form-error';
+      errEl.style.cssText = 'color:#c0392b;font-size:0.9rem;margin-top:0.5rem;';
+      errEl.textContent = 'Please complete the security check before sending.';
+      $('contactSend').parentElement.after(errEl);
+      return;
+    }
 
     if (Date.now() - lastSent < 30_000) return;
 
@@ -1067,7 +1081,7 @@
       const res = await fetch(WEBHOOK_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, website, costSavings }),
+        body: JSON.stringify({ name, email, website, costSavings, cfToken }),
       });
       if (!res.ok) throw new Error('Server error');
 
