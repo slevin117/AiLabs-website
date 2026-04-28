@@ -578,13 +578,17 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": ["LocalBusiness", "ProfessionalService"],
+    "@type": ["Organization", "ProfessionalService"],
     "@id": "https://ailabs.co.nz",
     "name": "AiLabs",
     "url": "https://ailabs.co.nz",
     "description": "AI agents, business apps and automation for NZ small businesses.",
     "areaServed": "New Zealand",
-    "address": { "@type": "PostalAddress", "addressLocality": "Christchurch", "addressCountry": "NZ" },
+    "serviceArea": {
+      "@type": "GeoCircle",
+      "geoMidpoint": { "@type": "GeoCoordinates", "addressCountry": "NZ" },
+      "name": "New Zealand"
+    },
     "email": "hello@ailabs.co.nz",
     "logo": {
       "@type": "ImageObject",
@@ -592,7 +596,8 @@
       "width": 200,
       "height": 60
     },
-    "image": "https://ailabs.co.nz/assets/og-image.png"
+    "image": "https://ailabs.co.nz/assets/og-image.png",
+    "sameAs": []
   }
   </script>
 </head>
