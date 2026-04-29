@@ -671,6 +671,8 @@
   </div>
 </section>
 
+<div id="scrollSentinel" aria-hidden="true" style="position:absolute;height:1px;width:1px;pointer-events:none;"></div>
+
 <section id="services">
   <div class="wrap">
     <div class="section-head reveal">
@@ -724,7 +726,7 @@
     </div>
 
     <div class="calc-grid">
-      <form class="calc-form" id="calcForm" onsubmit="return false;">
+      <form class="calc-form" id="calcForm">
         <label for="task">The task</label>
         <input id="task" type="text" placeholder="e.g. Sending quote follow-ups" autocomplete="off" />
 
@@ -792,7 +794,7 @@
           </ul>
           <div class="audit-meta">~1 week from intake to delivered report</div>
         </div>
-        <a href="#" class="btn btn-primary audit-cta" onclick="openModal();return false;">Book a Readiness Check <span class="arrow">-></span></a>
+        <a href="#" class="btn btn-primary audit-cta">Book a Readiness Check <span class="arrow">-></span></a>
       </div>
 
       <div class="audit-card audit-card--dark reveal">
@@ -811,7 +813,7 @@
           </ul>
           <div class="audit-meta">As little as 2 weeks from intake to presentation</div>
         </div>
-        <a href="#" class="btn audit-cta" style="background:var(--green);color:var(--green-dark);" onclick="openModal();return false;">Book an AI Blueprint <span class="arrow">-></span></a>
+        <a href="#" class="btn audit-cta" style="background:var(--green);color:var(--green-dark);">Book an AI Blueprint <span class="arrow">-></span></a>
       </div>
 
     </div>
@@ -853,21 +855,6 @@
   </div>
 </section>
 
-<!-- PORTFOLIO: restore when real client work is ready
-<section id="work">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <span class="eyebrow">What we've shipped</span>
-      <h2 class="display">Built by us.<br>Used by real<br>businesses.</h2>
-    </div>
-    <div class="work-grid">
-      <a href="#work" class="work-card reveal" aria-disabled="true"><span class="tag">Automation</span><h3>Christchurch Trades Business</h3><p>Automated invoice follow-ups and job scheduling. Owner saved 6 hours a week on admin.</p><span class="link">Result -></span></a>
-      <a href="#work" class="work-card reveal" aria-disabled="true"><span class="tag">AI Agent</span><h3>Wellington Accountancy Firm</h3><p>AI assistant drafts client correspondence and meeting notes. 8 hours saved per week, per fee earner.</p><span class="link">Result -></span></a>
-      <a href="#work" class="work-card reveal" aria-disabled="true"><span class="tag">Business App</span><h3>Auckland Online Retailer</h3><p>Custom inventory alert system with automated supplier orders. Team saves 10 hours a week.</p><span class="link">Result -></span></a>
-    </div>
-  </div>
-</section>
--->
 
 <section id="cta">
   <div class="wrap">
@@ -896,7 +883,7 @@
       <h2 id="bookModalTitle">Get in touch</h2>
       <p id="bookModalSubtitle">Drop your details and we'll check out your site. No pitch, no pressure.</p>
     </div>
-    <form class="contact-form" id="contactForm" onsubmit="return false;">
+    <form class="contact-form" id="contactForm">
       <!-- honeypot: hidden from real users, bots fill it -->
       <input id="contactHoneypot" name="website2" tabindex="-1" autocomplete="off"
              style="position:absolute;left:-9999px;height:0;width:0;opacity:0;" aria-hidden="true" />
@@ -920,7 +907,7 @@
       <div class="form-actions">
         <button type="button" class="btn btn-primary" id="contactSend">Send message <span class="arrow">-></span></button>
       </div>
-    </div>
+    </form>
   </div>
 </div>
 
@@ -955,6 +942,7 @@
 </div>
 
   <script>
+  (function () {
     // Value Cycler Logic
     const target = document.getElementById('valueTarget');
     const phrases = [
@@ -1201,13 +1189,15 @@
     document.body.classList.remove('modal-open');
   }
 
-  // Trigger: exit intent (desktop) or 40s timer (mobile), only after 30% scroll
+  // Trigger: exit intent (desktop) or timer (mobile), only after 30% scroll
   let policyScrolled = false;
-  window.addEventListener('scroll', () => {
-    if (!policyScrolled && window.scrollY / (document.body.scrollHeight - window.innerHeight) > 0.3) {
-      policyScrolled = true;
-    }
-  }, { passive: true });
+  const scrollSentinel = document.getElementById('scrollSentinel');
+  if (scrollSentinel) {
+    const sentinelObserver = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) { policyScrolled = true; sentinelObserver.disconnect(); }
+    });
+    sentinelObserver.observe(scrollSentinel);
+  }
 
   // Desktop: exit intent — mouse leaving viewport toward top
   document.addEventListener('mouseleave', e => {
@@ -1265,6 +1255,17 @@
       alert('Something went wrong — please try again or email hello@ailabs.co.nz');
     }
   });
+
+  // Form submit prevention (moved from inline handlers)
+  document.getElementById('calcForm').addEventListener('submit', e => e.preventDefault());
+  document.getElementById('contactForm').addEventListener('submit', e => e.preventDefault());
+
+  // Audit CTA buttons (moved from inline onclick handlers)
+  document.querySelectorAll('.audit-cta').forEach(el => {
+    el.addEventListener('click', e => { e.preventDefault(); openModal(); });
+  });
+
+  }()); // end IIFE
 </script>
 </body>
 </html>
