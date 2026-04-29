@@ -2,21 +2,45 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://ailabs.co.nz/</loc>
-    <lastmod>2026-04-20</lastmod>
+    <lastmod>2026-04-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://ailabs.co.nz/blog/</loc>
-    <lastmod>2026-04-20</lastmod>
+    <lastmod>2026-04-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://ailabs.co.nz/blog/where-to-start-with-ai-nz-small-business/</loc>
-    <lastmod>2026-04-20</lastmod>
+    <loc>https://ailabs.co.nz/blog/ai-automation-nz-tradies/</loc>
+    <lastmod>2026-04-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ailabs.co.nz/blog/is-your-nz-business-ready-for-ai/</loc>
+    <lastmod>2026-04-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ailabs.co.nz/blog/ai-agents-answer-customer-questions-nz-small-business/</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ailabs.co.nz/blog/why-your-teams-chatgpt-habit-isnt-showing-up-on-the-bottom-line/</loc>
+    <lastmod>2026-04-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ailabs.co.nz/blog/where-to-start-with-ai-nz-small-business/</loc>
+    <lastmod>2026-04-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://ailabs.co.nz/privacy.html</loc>
