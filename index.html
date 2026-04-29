@@ -575,6 +575,35 @@
       .success-check polyline { animation: none; stroke-dashoffset: 0; }
     }
     body.modal-open { overflow: hidden; }
+
+    /* ---------- Policy modal (split layout) ---------- */
+    .policy-panel { display: flex; max-width: 720px; padding: 0; overflow: hidden; }
+    .policy-panel .policy-value {
+      flex: 0 0 240px;
+      background: var(--green-dark);
+      color: #fff;
+      padding: 2.5rem 1.75rem;
+      display: flex; flex-direction: column; justify-content: center; gap: 1.25rem;
+    }
+    .policy-panel .policy-value .eyebrow {
+      font-family: var(--mono); font-size: 0.65rem;
+      text-transform: uppercase; letter-spacing: 0.16em;
+      color: var(--green); margin-bottom: -0.5rem;
+    }
+    .policy-panel .policy-value h2 {
+      font-family: var(--display); font-weight: 900;
+      font-size: 1.5rem; letter-spacing: -0.02em; line-height: 1; color: #fff;
+    }
+    .policy-panel .policy-value ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.6rem; }
+    .policy-panel .policy-value ul li { font-size: 0.85rem; color: rgba(255,255,255,0.75); padding-left: 1.1rem; position: relative; }
+    .policy-panel .policy-value ul li::before { content: '→'; position: absolute; left: 0; color: var(--green); }
+    .policy-panel .policy-form { flex: 1; padding: 2rem 1.75rem; display: flex; flex-direction: column; justify-content: center; }
+    @media (max-width: 600px) {
+      .policy-panel { flex-direction: column; }
+      .policy-panel .policy-value { flex: none; padding: 1.5rem; }
+      .policy-panel .policy-value h2 { font-size: 1.25rem; }
+      .policy-panel .policy-form { padding: 1.5rem; }
+    }
   </style>
   <script type="application/ld+json">
   {
@@ -924,31 +953,41 @@
 
 <div id="policyModal" class="modal" hidden aria-modal="true" role="dialog" aria-labelledby="policyModalTitle">
   <div class="modal-backdrop" data-modal-close="policy"></div>
-  <div class="modal-panel" style="max-width:560px">
-    <button type="button" class="modal-close" data-modal-close="policy" aria-label="Close">×</button>
-    <div class="modal-head">
-      <h2 id="policyModalTitle">Free NZ AI Policy template</h2>
-      <p>Privacy Act 2020 compliant. Takes 10 minutes to customise. We'll email it straight to you.</p>
+  <div class="modal-panel policy-panel">
+    <div class="policy-value">
+      <p class="eyebrow">Free download</p>
+      <h2 id="policyModalTitle">NZ AI Policy Template</h2>
+      <ul>
+        <li>Privacy Act 2020 &amp; IPP 3A compliant</li>
+        <li>Copy-paste ready — Word format</li>
+        <li>Takes 10 minutes to customise</li>
+      </ul>
     </div>
-    <form id="policyForm" class="contact-form" novalidate>
-      <div>
-        <label for="policyName">Your name</label>
-        <input id="policyName" name="name" type="text" required maxlength="100" autocomplete="name" placeholder="e.g. Jane Smith">
+    <div class="policy-form">
+      <button type="button" class="modal-close" data-modal-close="policy" aria-label="Close">×</button>
+      <div class="modal-head" style="margin-bottom:1rem">
+        <p style="color:var(--ink-soft);font-size:0.9rem">We'll email it to you straight away.</p>
       </div>
-      <div>
-        <label for="policyEmail">Email</label>
-        <input id="policyEmail" name="email" type="email" required maxlength="254" autocomplete="email" placeholder="e.g. jane@company.co.nz">
-      </div>
-      <div>
-        <label for="policyCompany">Company (optional)</label>
-        <input id="policyCompany" name="company" type="text" maxlength="100" autocomplete="organization" placeholder="e.g. Acme Ltd">
-      </div>
-      <div class="form-actions">
-        <button id="policySend" type="button" class="btn btn-primary">Send me the template <span class="arrow">-></span></button>
-      </div>
-      <p class="contact-form form-note" style="text-align:center">No spam. Unsubscribe any time.</p>
-    </form>
-    <div id="policySuccess" hidden></div>
+      <form id="policyForm" class="contact-form" novalidate>
+        <div>
+          <label for="policyName">Your name</label>
+          <input id="policyName" name="name" type="text" required maxlength="100" autocomplete="name" placeholder="e.g. Jane Smith">
+        </div>
+        <div>
+          <label for="policyEmail">Email</label>
+          <input id="policyEmail" name="email" type="email" required maxlength="254" autocomplete="email" placeholder="e.g. jane@company.co.nz">
+        </div>
+        <div>
+          <label for="policyCompany">Company (optional)</label>
+          <input id="policyCompany" name="company" type="text" maxlength="100" autocomplete="organization" placeholder="e.g. Acme Ltd">
+        </div>
+        <div class="form-actions">
+          <button id="policySend" type="button" class="btn btn-primary">Send me the template <span class="arrow">-></span></button>
+        </div>
+        <p style="font-size:0.78rem;color:var(--ink-soft);text-align:center;margin-top:0.5rem">No spam. Unsubscribe any time.</p>
+      </form>
+      <div id="policySuccess" hidden></div>
+    </div>
   </div>
 </div>
 
