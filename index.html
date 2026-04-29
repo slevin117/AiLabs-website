@@ -560,6 +560,8 @@
     .contact-form textarea { resize: vertical; min-height: 120px; }
     .contact-form .form-actions { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-top: 0.5rem; }
     .contact-form .form-note { font-size: 0.85rem; color: var(--ink-soft); margin-top: 0.25rem; }
+    .modal-eyebrow { font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--green); margin-bottom: .25rem; }
+    .form-note { font-size: .75rem; color: #888; text-align: center; margin-top: .5rem; }
     @keyframes modalFade { from { opacity: 0; } to { opacity: 1; } }
     @keyframes modalPop { from { opacity: 0; transform: translateY(12px) scale(0.98); } to { opacity: 1; transform: none; } }
     @keyframes checkDraw { from { stroke-dashoffset: 56; } to { stroke-dashoffset: 0; } }
@@ -921,6 +923,37 @@
   </div>
 </div>
 
+<div id="policyModal" class="modal" hidden aria-modal="true" role="dialog" aria-labelledby="policyModalTitle">
+  <div class="modal-backdrop" data-modal-close="policy"></div>
+  <div class="modal-panel">
+    <button class="modal-close" data-modal-close="policy" aria-label="Close">✕</button>
+    <div class="modal-head">
+      <p class="modal-eyebrow">Free Download</p>
+      <h2 id="policyModalTitle">Get your NZ AI Policy — free</h2>
+      <p>Privacy Act 2020 compliant. Copy-paste ready. Takes 10 minutes to customise.</p>
+    </div>
+    <form id="policyForm" class="contact-form" novalidate>
+      <div class="field-group">
+        <label for="policyName">Your name <span aria-hidden="true">*</span></label>
+        <input id="policyName" name="name" type="text" required maxlength="100" autocomplete="name" placeholder="Jane Smith">
+      </div>
+      <div class="field-group">
+        <label for="policyEmail">Work email <span aria-hidden="true">*</span></label>
+        <input id="policyEmail" name="email" type="email" required maxlength="254" autocomplete="email" placeholder="jane@company.co.nz">
+      </div>
+      <div class="field-group">
+        <label for="policyCompany">Company <span aria-hidden="true">(optional)</span></label>
+        <input id="policyCompany" name="company" type="text" maxlength="100" autocomplete="organization" placeholder="Acme Ltd">
+      </div>
+      <button id="policySend" type="button" class="btn btn-primary" style="width:100%">
+        Send me the policy →
+      </button>
+      <p class="form-note">No spam. Unsubscribe any time.</p>
+    </form>
+    <div id="policySuccess" hidden></div>
+  </div>
+</div>
+
   <script>
     // Value Cycler Logic
     const target = document.getElementById('valueTarget');
@@ -1146,6 +1179,83 @@
       const last = focusables[focusables.length - 1];
       if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
       else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  });
+
+  // ── Policy lead popup ─────────────────────────────────────────────────────
+  const POLICY_WEBHOOK = 'https://n8n.tovizi.com/webhook/ailabs-policy-lead';
+  const POLICY_KEY = 'ailabs_policy_seen';
+  let policyShown = false;
+
+  function openPolicyModal() {
+    if (policyShown || localStorage.getItem(POLICY_KEY)) return;
+    policyShown = true;
+    const m = $('policyModal');
+    m.removeAttribute('hidden');
+    document.body.classList.add('modal-open');
+    m.querySelector('#policyName').focus();
+  }
+
+  function closePolicyModal() {
+    $('policyModal').setAttribute('hidden', '');
+    document.body.classList.remove('modal-open');
+  }
+
+  // Trigger: observe #cta section as 60%-depth proxy, minimum 8s on page
+  let policyReady = false;
+  setTimeout(() => { policyReady = true; }, 8000);
+  const policyObserver = new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting && policyReady) openPolicyModal();
+  }, { threshold: 0 });
+  const ctaEl = document.querySelector('#cta');
+  if (ctaEl) policyObserver.observe(ctaEl);
+
+  // Close triggers
+  document.addEventListener('click', e => {
+    if (e.target.matches('[data-modal-close="policy"]')) closePolicyModal();
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && !$('policyModal').hidden) closePolicyModal();
+  });
+
+  // Submit
+  $('policySend').addEventListener('click', async () => {
+    const nameEl  = $('policyName');
+    const emailEl = $('policyEmail');
+    const compEl  = $('policyCompany');
+    const btn     = $('policySend');
+    const name    = nameEl.value.trim();
+    const email   = emailEl.value.trim();
+    const company = compEl.value.trim();
+
+    if (!name)  { nameEl.reportValidity(); return; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      emailEl.setCustomValidity('Please enter a valid email address.');
+      emailEl.reportValidity(); emailEl.setCustomValidity(''); return;
+    }
+
+    btn.disabled = true; btn.textContent = 'Sending…';
+    try {
+      const res = await fetch(POLICY_WEBHOOK, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, company }),
+      });
+      if (!res.ok) throw new Error('Server error');
+      localStorage.setItem(POLICY_KEY, '1');
+      $('policyForm').hidden = true;
+      $('policySuccess').removeAttribute('hidden');
+      $('policySuccess').innerHTML = `
+        <div style="text-align:center;padding:2rem 0">
+          <div style="font-size:3rem;margin-bottom:1rem">📬</div>
+          <h3 style="margin-bottom:.5rem">Check your inbox</h3>
+          <p style="color:#666">We've sent the AI Policy Starter Kit to <strong>${email}</strong>.<br>
+          It may take a couple of minutes to arrive.</p>
+        </div>`;
+    } catch {
+      btn.disabled = false;
+      btn.textContent = 'Send me the policy →';
+      alert('Something went wrong — please try again or email hello@ailabs.co.nz');
     }
   });
 </script>
