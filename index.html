@@ -560,8 +560,7 @@
     .contact-form textarea { resize: vertical; min-height: 120px; }
     .contact-form .form-actions { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-top: 0.5rem; }
     .contact-form .form-note { font-size: 0.85rem; color: var(--ink-soft); margin-top: 0.25rem; }
-    .modal-eyebrow { font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--green); margin-bottom: .25rem; }
-    .form-note { font-size: .75rem; color: #888; text-align: center; margin-top: .5rem; }
+
     @keyframes modalFade { from { opacity: 0; } to { opacity: 1; } }
     @keyframes modalPop { from { opacity: 0; transform: translateY(12px) scale(0.98); } to { opacity: 1; transform: none; } }
     @keyframes checkDraw { from { stroke-dashoffset: 56; } to { stroke-dashoffset: 0; } }
@@ -925,30 +924,29 @@
 
 <div id="policyModal" class="modal" hidden aria-modal="true" role="dialog" aria-labelledby="policyModalTitle">
   <div class="modal-backdrop" data-modal-close="policy"></div>
-  <div class="modal-panel">
-    <button class="modal-close" data-modal-close="policy" aria-label="Close">✕</button>
+  <div class="modal-panel" style="max-width:560px">
+    <button type="button" class="modal-close" data-modal-close="policy" aria-label="Close">×</button>
     <div class="modal-head">
-      <p class="modal-eyebrow">Free Download</p>
-      <h2 id="policyModalTitle">Get your NZ AI Policy — free</h2>
-      <p>Privacy Act 2020 compliant. Copy-paste ready. Takes 10 minutes to customise.</p>
+      <h2 id="policyModalTitle">Free NZ AI Policy template</h2>
+      <p>Privacy Act 2020 compliant. Takes 10 minutes to customise. We'll email it straight to you.</p>
     </div>
     <form id="policyForm" class="contact-form" novalidate>
-      <div class="field-group">
-        <label for="policyName">Your name <span aria-hidden="true">*</span></label>
-        <input id="policyName" name="name" type="text" required maxlength="100" autocomplete="name" placeholder="Jane Smith">
+      <div>
+        <label for="policyName">Your name</label>
+        <input id="policyName" name="name" type="text" required maxlength="100" autocomplete="name" placeholder="e.g. Jane Smith">
       </div>
-      <div class="field-group">
-        <label for="policyEmail">Work email <span aria-hidden="true">*</span></label>
-        <input id="policyEmail" name="email" type="email" required maxlength="254" autocomplete="email" placeholder="jane@company.co.nz">
+      <div>
+        <label for="policyEmail">Email</label>
+        <input id="policyEmail" name="email" type="email" required maxlength="254" autocomplete="email" placeholder="e.g. jane@company.co.nz">
       </div>
-      <div class="field-group">
-        <label for="policyCompany">Company <span aria-hidden="true">(optional)</span></label>
-        <input id="policyCompany" name="company" type="text" maxlength="100" autocomplete="organization" placeholder="Acme Ltd">
+      <div>
+        <label for="policyCompany">Company (optional)</label>
+        <input id="policyCompany" name="company" type="text" maxlength="100" autocomplete="organization" placeholder="e.g. Acme Ltd">
       </div>
-      <button id="policySend" type="button" class="btn btn-primary" style="width:100%">
-        Send me the policy →
-      </button>
-      <p class="form-note">No spam. Unsubscribe any time.</p>
+      <div class="form-actions">
+        <button id="policySend" type="button" class="btn btn-primary">Send me the template <span class="arrow">-></span></button>
+      </div>
+      <p class="contact-form form-note" style="text-align:center">No spam. Unsubscribe any time.</p>
     </form>
     <div id="policySuccess" hidden></div>
   </div>
@@ -1201,14 +1199,21 @@
     document.body.classList.remove('modal-open');
   }
 
-  // Trigger: observe #cta section as 60%-depth proxy, minimum 8s on page
-  let policyReady = false;
-  setTimeout(() => { policyReady = true; }, 8000);
-  const policyObserver = new IntersectionObserver(entries => {
-    if (entries[0].isIntersecting && policyReady) openPolicyModal();
-  }, { threshold: 0 });
-  const ctaEl = document.querySelector('#cta');
-  if (ctaEl) policyObserver.observe(ctaEl);
+  // Trigger: exit intent (desktop) or 40s timer (mobile), only after 30% scroll
+  let policyScrolled = false;
+  window.addEventListener('scroll', () => {
+    if (!policyScrolled && window.scrollY / (document.body.scrollHeight - window.innerHeight) > 0.3) {
+      policyScrolled = true;
+    }
+  }, { passive: true });
+
+  // Desktop: exit intent — mouse leaving viewport toward top
+  document.addEventListener('mouseleave', e => {
+    if (e.clientY < 10 && policyScrolled) openPolicyModal();
+  });
+
+  // Mobile / no-mouse fallback: 40s after page load
+  setTimeout(() => { if (policyScrolled) openPolicyModal(); }, 40000);
 
   // Close triggers
   document.addEventListener('click', e => {
