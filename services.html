@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services — AiLabs</title>
+  <meta name="description" content="AiLabs builds AI agents and automation for NZ small businesses. Start with an audit, build what you need, and keep it running. Christchurch-based, fixed price, fast to ship." />
+  <link rel="canonical" href="https://ailabs.co.nz/services" />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <meta property="og:title" content="Services — AiLabs" />
+  <meta property="og:description" content="AI agents and automation for NZ SMBs. Audit, build, and grow — on a timeline and budget that fits." />
+  <meta property="og:image" content="https://ailabs.co.nz/assets/og-image.png" />
+  <meta property="og:url" content="https://ailabs.co.nz/services" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="AiLabs" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" /></noscript>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --ink: #0e0f0c;
+      --ink-soft: #454745;
+      --ink-dim: #868685;
+      --bg: #f7f8f4;
+      --surface: #ffffff;
+      --green: #9fe870;
+      --green-dark: #163300;
+      --green-hover: #cdffad;
+      --mint: #e2f6d5;
+      --light: #e8ebe6;
+      --border: rgba(14,15,12,0.12);
+      --ring: 0 0 0 1px rgba(14,15,12,0.12);
+      --display: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+      --body: 'Inter', 'Helvetica', Arial, sans-serif;
+      --mono: 'JetBrains Mono', ui-monospace, monospace;
+    }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--body);
+      font-weight: 500;
+      font-size: 1.0625rem;
+      line-height: 1.5;
+      font-feature-settings: "calt" 1, "ss01" 1;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    ::selection { background: var(--green); color: var(--green-dark); }
+    [hidden] { display: none !important; }
+
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 0 1.75rem; }
+    section { padding: 7rem 0; position: relative; }
+
+    /* ---------- Nav ---------- */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1rem 1.75rem;
+      background: rgba(247,248,244,0.97);
+      backdrop-filter: saturate(140%) blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+    .logo {
+      font-family: var(--display);
+      font-weight: 900;
+      font-size: 1.4rem;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      text-decoration: none;
+      color: var(--ink);
+      display: inline-flex; align-items: baseline; gap: 0.1rem;
+    }
+    .logo-dot { width: 0.45rem; height: 0.45rem; background: var(--green); border-radius: 9999px; display: inline-block; }
+    .nav-links { display: none; gap: 2rem; }
+    .nav-links a { color: var(--ink); text-decoration: none; font-size: 0.95rem; font-weight: 600; }
+    .nav-links a:hover { color: var(--green-dark); }
+    @media (min-width: 860px) { .nav-links { display: flex; } }
+
+    /* ---------- Buttons ---------- */
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.55rem;
+      font-family: var(--body);
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0.9rem 1.6rem;
+      border-radius: 9999px;
+      border: 0;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.18s ease, background 0.2s ease;
+      will-change: transform;
+    }
+    .btn-primary { background: var(--green); color: var(--green-dark); }
+    .btn-primary:hover { transform: scale(1.05); background: var(--green-hover); }
+    .btn-primary:active { transform: scale(0.96); }
+    .btn-secondary { background: rgba(22, 51, 0, 0.08); color: var(--ink); }
+    .btn-secondary:hover { transform: scale(1.05); background: rgba(22,51,0,0.12); }
+    .btn-secondary:active { transform: scale(0.96); }
+    .btn-dark { background: var(--ink); color: var(--bg); }
+    .btn-dark:hover { transform: scale(1.05); background: #1c1d1a; }
+    .btn-dark:active { transform: scale(0.96); }
+    .btn .arrow { display: inline-block; transition: transform 0.2s ease; }
+    .btn:hover .arrow { transform: translateX(3px); }
+
+    /* ---------- Labels ---------- */
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--ink-soft);
+      padding: 0.45rem 0.85rem;
+      border-radius: 9999px;
+      background: var(--mint);
+    }
+    .eyebrow::before {
+      content: ''; width: 0.45rem; height: 0.45rem; border-radius: 9999px; background: var(--green-dark);
+    }
+
+    /* ---------- Typography ---------- */
+    .display {
+      font-family: var(--display);
+      font-weight: 900;
+      line-height: 0.85;
+      letter-spacing: -0.02em;
+    }
+    .alt-head {
+      font-family: var(--body);
+      font-weight: 600;
+      font-size: clamp(1.15rem, 1.6vw, 1.35rem);
+      line-height: 1.4;
+      color: var(--ink-soft);
+      max-width: 56ch;
+    }
+    .mark {
+      display: inline-block;
+      background: var(--green);
+      color: var(--green-dark);
+      padding: 0.02em 0.22em 0.14em;
+      border-radius: 0.16em;
+      line-height: 0.9;
+      margin: 0 0.02em;
+      transform: translateY(-0.015em);
+    }
+    h2 { font-family: var(--display); font-weight: 900; font-size: clamp(2.4rem, 5vw, 4.5rem); letter-spacing: -0.02em; line-height: 0.9; }
+    h3 { font-family: var(--body); font-weight: 700; font-size: 1.15rem; line-height: 1.3; }
+    p { line-height: 1.6; color: var(--ink-soft); }
+
+    /* ---------- Section head ---------- */
+    .section-head { display: grid; gap: 1.25rem; margin-bottom: 3.5rem; }
+    .section-head .alt-head { margin-top: 0.5rem; }
+
+    /* ---------- Reveal ---------- */
+    .reveal { opacity: 1; transform: none; }
+    .js-reveal .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .js-reveal .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ---------- Hero ---------- */
+    #hero { padding: 5rem 0 6rem; }
+    .hero-inner { display: grid; gap: 2.5rem; }
+    @media (min-width: 860px) {
+      .hero-inner { grid-template-columns: 1fr 1fr; align-items: center; gap: 4rem; }
+    }
+    .hero-label { margin-bottom: 1.25rem; }
+    .hero-head { font-size: clamp(3rem, 6vw, 5.5rem); margin-top: 1rem; }
+    .hero-sub { font-size: clamp(1.1rem, 1.5vw, 1.3rem); color: var(--ink-soft); margin-top: 1.5rem; max-width: 46ch; line-height: 1.5; font-weight: 600; }
+    .hero-ctas { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2.25rem; }
+    .hero-aside {
+      background: var(--green-dark);
+      border-radius: 30px;
+      padding: 2.5rem;
+      color: var(--bg);
+    }
+    .hero-aside-num {
+      font-family: var(--display);
+      font-weight: 900;
+      font-size: 4rem;
+      letter-spacing: -0.03em;
+      line-height: 0.85;
+      color: var(--green);
+    }
+    .hero-aside-num em { font-style: normal; font-size: 2.5rem; }
+    .hero-aside p { color: rgba(247,248,244,0.7); margin-top: 0.75rem; font-size: 0.95rem; }
+    .hero-aside-list { list-style: none; padding: 0; margin-top: 1.75rem; display: flex; flex-direction: column; gap: 0.9rem; }
+    .hero-aside-list li { font-size: 0.95rem; color: rgba(247,248,244,0.85); display: flex; gap: 0.7rem; align-items: flex-start; }
+    .hero-aside-list li::before { content: '→'; color: var(--green); font-weight: 700; flex-shrink: 0; }
+
+    /* ---------- Journey ---------- */
+    #journey { background: var(--surface); }
+    .journey-grid { display: grid; gap: 1.5rem; }
+    @media (min-width: 860px) { .journey-grid { grid-template-columns: 1fr 1fr 1fr; } }
+    .journey-card {
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      padding: 2.25rem;
+      background: var(--bg);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .journey-num {
+      font-family: var(--display);
+      font-weight: 900;
+      font-size: 2.75rem;
+      line-height: 0.85;
+      color: var(--green-dark);
+      letter-spacing: -0.02em;
+    }
+    .journey-card h3 { font-size: 1.2rem; color: var(--ink); margin-top: 0.25rem; }
+    .journey-card p { font-size: 0.95rem; color: var(--ink-soft); }
+    .journey-connector {
+      display: none;
+      align-self: center;
+      color: var(--ink-dim);
+      font-size: 1.5rem;
+    }
+    @media (min-width: 860px) { .journey-connector { display: block; } }
+
+    /* ---------- Audits ---------- */
+    .audit-grid { display: grid; grid-template-columns: 1fr; gap: 1.25rem; }
+    @media (min-width: 860px) { .audit-grid { grid-template-columns: 1fr 1fr; } }
+    .audit-card {
+      background: var(--surface);
+      border-radius: 30px;
+      padding: 2.5rem;
+      box-shadow: var(--ring);
+      border: 2px solid var(--border);
+      display: flex; flex-direction: column; gap: 1.75rem;
+    }
+    .audit-card--dark { background: var(--green-dark); border-color: var(--green-dark); }
+    .audit-card--dark h3 { color: var(--bg); }
+    .audit-tier {
+      font-family: var(--mono); font-size: 0.72rem; font-weight: 500;
+      text-transform: uppercase; letter-spacing: 0.14em; color: var(--ink-dim);
+    }
+    .audit-card--dark .audit-tier { color: rgba(247,248,244,0.5); }
+    .audit-price {
+      font-family: var(--display); font-weight: 900;
+      font-size: 2.5rem; letter-spacing: -0.03em;
+      color: var(--green-dark); line-height: 1;
+    }
+    .audit-card--dark .audit-price { color: var(--green); }
+    .audit-price span { font-family: var(--body); font-size: 1rem; font-weight: 500; color: var(--ink-dim); }
+    .audit-card--dark .audit-price span { color: rgba(247,248,244,0.5); }
+    .audit-deliverable-label {
+      font-family: var(--mono); font-size: 0.7rem;
+      text-transform: uppercase; letter-spacing: 0.14em; color: var(--ink-dim);
+    }
+    .audit-card--dark .audit-deliverable-label { color: rgba(247,248,244,0.4); }
+    .audit-deliverables { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.55rem; }
+    .audit-deliverables li { font-size: 0.95rem; color: var(--ink-soft); display: flex; gap: 0.6rem; align-items: flex-start; }
+    .audit-card--dark .audit-deliverables li { color: rgba(247,248,244,0.8); }
+    .audit-deliverables li::before { content: '✓'; font-weight: 700; color: var(--green-dark); flex-shrink: 0; }
+    .audit-card--dark .audit-deliverables li::before { color: var(--green); }
+    .audit-meta {
+      font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.1em;
+      color: var(--ink-dim); text-transform: uppercase;
+      border-top: 1px solid var(--border); padding-top: 1rem; margin-top: auto;
+    }
+    .audit-card--dark .audit-meta { color: rgba(247,248,244,0.4); border-color: rgba(247,248,244,0.1); }
+    .audit-credit {
+      margin-top: 1.5rem;
+      background: var(--mint);
+      border-radius: 20px;
+      padding: 1.5rem 2rem;
+      display: flex; gap: 1.25rem; align-items: flex-start;
+      font-size: 0.95rem; color: var(--green-dark);
+    }
+    .audit-credit-icon { font-size: 1.4rem; flex-shrink: 0; font-weight: 900; }
+    .audit-credit strong { font-weight: 700; }
+
+    /* ---------- Projects ---------- */
+    #projects { background: var(--surface); }
+    .project-card {
+      background: var(--bg);
+      border: 2px solid var(--border);
+      border-radius: 30px;
+      padding: 2.5rem;
+      display: grid;
+      gap: 2rem;
+    }
+    @media (min-width: 860px) {
+      .project-card { grid-template-columns: 1fr 1fr; align-items: start; }
+    }
+    .project-card-left { display: flex; flex-direction: column; gap: 1.25rem; }
+    .project-badge {
+      display: inline-block;
+      font-family: var(--mono); font-size: 0.72rem; font-weight: 500;
+      text-transform: uppercase; letter-spacing: 0.14em;
+      color: var(--green-dark);
+      background: var(--mint);
+      padding: 0.35rem 0.8rem;
+      border-radius: 9999px;
+    }
+    .project-card h3 { font-size: 1.6rem; font-family: var(--display); font-weight: 900; letter-spacing: -0.02em; color: var(--ink); line-height: 0.95; }
+    .project-card p { font-size: 0.98rem; color: var(--ink-soft); line-height: 1.6; }
+    .project-card-right { display: flex; flex-direction: column; gap: 1rem; }
+    .project-deliverables { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.6rem; }
+    .project-deliverables li { font-size: 0.95rem; color: var(--ink-soft); display: flex; gap: 0.6rem; align-items: flex-start; }
+    .project-deliverables li::before { content: '✓'; font-weight: 700; color: var(--green-dark); flex-shrink: 0; }
+    .project-meta {
+      font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.1em;
+      color: var(--ink-dim); text-transform: uppercase;
+      border-top: 1px solid var(--border); padding-top: 1rem;
+    }
+    .bigger-callout {
+      margin-top: 1.5rem;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 1.5rem 2rem;
+      font-size: 0.95rem;
+      color: var(--ink-soft);
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+    .bigger-callout strong { color: var(--ink); }
+
+    /* ---------- Retainer ---------- */
+    #retainer { background: var(--green-dark); }
+    #retainer .eyebrow { background: rgba(159,232,112,0.15); color: var(--green); }
+    #retainer .eyebrow::before { background: var(--green); }
+    #retainer h2 { color: var(--bg); }
+    #retainer .alt-head { color: rgba(247,248,244,0.7); }
+    .retainer-tiers { display: grid; gap: 1rem; margin-top: 2.5rem; }
+    @media (min-width: 640px) { .retainer-tiers { grid-template-columns: 1fr 1fr 1fr; } }
+    .retainer-tier {
+      border: 1px solid rgba(247,248,244,0.12);
+      border-radius: 20px;
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .retainer-tier-name {
+      font-family: var(--mono); font-size: 0.72rem; font-weight: 500;
+      text-transform: uppercase; letter-spacing: 0.14em;
+      color: var(--green);
+    }
+    .retainer-tier h3 { color: var(--bg); font-size: 1.1rem; font-weight: 700; }
+    .retainer-tier p { color: rgba(247,248,244,0.65); font-size: 0.9rem; }
+
+    /* ---------- CTA ---------- */
+    #cta { padding: 7rem 0; }
+    #cta .eyebrow { background: rgba(22,51,0,0.08); color: var(--green-dark); }
+    #cta .eyebrow::before { background: var(--green-dark); }
+    #cta h2 { margin-top: 1.25rem; font-size: clamp(2.8rem, 5.5vw, 5rem); }
+    #cta .alt-head { margin-top: 1rem; }
+    .cta-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2.25rem; }
+
+    /* ---------- Footer ---------- */
+    footer {
+      padding: 3rem 1.75rem 2.5rem;
+      border-top: 1px solid var(--border);
+      display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem;
+      font-family: var(--mono); font-size: 0.78rem; color: var(--ink-soft);
+    }
+    footer .logo { font-size: 1.1rem; }
+    .footer-legal { display: flex; gap: 1.5rem; }
+    .footer-legal a { color: var(--ink-soft); text-decoration: none; }
+    .footer-legal a:hover { color: var(--ink); }
+
+    /* ---------- Modal ---------- */
+    .modal {
+      position: fixed; inset: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: center;
+      padding: 1rem;
+    }
+    .modal[hidden] { display: none; }
+    .modal-backdrop {
+      position: absolute; inset: 0;
+      background: rgba(14,15,12,0.72);
+      backdrop-filter: blur(6px);
+      animation: modalFade 0.2s ease;
+    }
+    .modal-panel {
+      position: relative;
+      background: var(--bg);
+      color: var(--ink);
+      border-radius: 30px;
+      max-width: 960px;
+      width: 100%;
+      max-height: 92vh;
+      overflow: auto;
+      padding: 2rem 1.75rem;
+      box-shadow: 0 30px 80px -20px rgba(0,0,0,0.5);
+      animation: modalPop 0.25s ease;
+    }
+    .modal-close {
+      position: absolute; top: 0.9rem; right: 0.9rem;
+      width: 2.4rem; height: 2.4rem;
+      border: 0; border-radius: 9999px;
+      background: rgba(14,15,12,0.08);
+      color: var(--ink);
+      font-size: 1.4rem; line-height: 1;
+      cursor: pointer;
+      display: grid; place-items: center;
+    }
+    .modal-close:hover { background: rgba(14,15,12,0.14); }
+    .modal-head { margin-bottom: 1.25rem; padding-right: 2.5rem; }
+    .modal-head h2 { font-family: var(--display); font-weight: 900; font-size: clamp(1.6rem, 3vw, 2.2rem); letter-spacing: -0.02em; line-height: 0.95; }
+    .modal-head p { color: var(--ink-soft); font-size: 0.98rem; margin-top: 0.6rem; }
+    .contact-form { display: grid; gap: 1rem; }
+    .contact-form label {
+      display: block;
+      font-family: var(--mono); font-size: 0.72rem;
+      text-transform: uppercase; letter-spacing: 0.14em;
+      color: var(--ink-soft);
+      margin-bottom: 0.4rem;
+    }
+    .contact-form input, .contact-form textarea {
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 0.95rem 1.1rem;
+      color: var(--ink);
+      font-family: var(--body);
+      font-size: 1rem;
+      font-weight: 500;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .contact-form input:focus, .contact-form textarea:focus {
+      outline: none;
+      border-color: var(--green);
+      box-shadow: 0 0 0 3px rgba(159,232,112,0.25);
+    }
+    .contact-form textarea { resize: vertical; min-height: 120px; }
+    .contact-form .form-actions { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-top: 0.5rem; }
+    .modal-open { overflow: hidden; }
+    .success-check { width: 64px; height: 64px; margin: 0 auto 1.25rem; display: block; }
+    .success-check circle { fill: none; stroke: var(--green); stroke-width: 2; }
+    .success-check polyline { fill: none; stroke: var(--green); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 56; stroke-dashoffset: 56; animation: checkDraw 0.5s ease 0.25s forwards; }
+    .success-state { text-align: center; padding: 2.5rem 0 1.5rem; animation: successFade 0.4s ease; }
+
+    @keyframes modalFade { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes modalPop { from { opacity: 0; transform: translateY(12px) scale(0.98); } to { opacity: 1; transform: none; } }
+    @keyframes checkDraw { from { stroke-dashoffset: 56; } to { stroke-dashoffset: 0; } }
+    @keyframes successFade { from { opacity: 0; transform: scale(0.92); } to { opacity: 1; transform: none; } }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="logo">AiLabs<span class="logo-dot" aria-hidden="true"></span></a>
+  <div class="nav-links">
+    <a href="#journey">How it works</a>
+    <a href="#audits">Audits</a>
+    <a href="#projects">Projects</a>
+    <a href="/blog/">Blog</a>
+  </div>
+  <button type="button" class="btn btn-primary" data-open-modal="book">Get in touch <span class="arrow">-></span></button>
+</nav>
+
+<section id="hero">
+  <div class="wrap">
+    <div class="hero-inner">
+      <div class="reveal">
+        <span class="eyebrow hero-label">AiLabs Services</span>
+        <h1 class="display hero-head">AI that fits<br>your business.</h1>
+        <p class="hero-sub">We help NZ small businesses find where AI makes the biggest difference — then build it. Fast, fixed price, no agency bloat.</p>
+        <div class="hero-ctas">
+          <button type="button" class="btn btn-primary" data-open-modal="book">Book a free call <span class="arrow">-></span></button>
+          <a href="#journey" class="btn btn-secondary">See how it works</a>
+        </div>
+      </div>
+      <div class="hero-aside reveal">
+        <div class="hero-aside-num">2–4<em>wk</em></div>
+        <p>From first call to a working AI agent in your business.</p>
+        <ul class="hero-aside-list">
+          <li>Fixed price — no hourly surprises</li>
+          <li>Built by someone who knows NZ SMBs</li>
+          <li>Christchurch-based, direct access</li>
+          <li>Faster than hiring, cheaper than agencies</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="journey">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">How it works</span>
+      <h2 class="display">Audit. Build.<br>Keep it running.</h2>
+      <p class="alt-head">Every engagement follows the same path. Start small, prove value, then scale what works.</p>
+    </div>
+    <div class="journey-grid">
+      <div class="journey-card reveal">
+        <div class="journey-num">01</div>
+        <h3>Audit</h3>
+        <p>Before building anything, find out where AI will actually help. We assess your tools, processes, and team — and tell you exactly what's worth automating and what isn't.</p>
+      </div>
+      <div class="journey-card reveal">
+        <div class="journey-num">02</div>
+        <h3>Build</h3>
+        <p>We build the thing. One focused AI agent, connected to your systems, working on the problem that matters most. Scoped, fixed price, delivered in weeks — not months.</p>
+      </div>
+      <div class="journey-card reveal">
+        <div class="journey-num">03</div>
+        <h3>Grow</h3>
+        <p>Once it works, keep it working. Ongoing support, optimisation, and expansion as your business changes — without the cost of a full-time hire.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="audits">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Where to start</span>
+      <h2 class="display">Find out exactly<br>where AI fits<br>your business.</h2>
+      <p class="alt-head">Before you build anything, you need to know what's worth building. Our audit products give you that clarity — fast.</p>
+    </div>
+    <div class="audit-grid">
+
+      <div class="audit-card reveal">
+        <div class="audit-tier">Tier 1 — Door opener</div>
+        <div class="audit-card-body">
+          <h3>AI Readiness Check</h3>
+          <div class="audit-price">$797 <span>+ GST</span></div>
+          <p class="audit-desc" style="color:var(--ink-soft);font-size:0.95rem;">A rapid assessment of your business — your tools, your processes, your team. We surface what's ready for AI now and what quick wins are sitting unused in tools you already pay for.</p>
+          <div class="audit-deliverable-label" style="margin-top:0.5rem;">What you get</div>
+          <ul class="audit-deliverables">
+            <li>AI Readiness Score (0–100)</li>
+            <li>Current systems snapshot</li>
+            <li>3–5 quick wins with effort and impact ratings</li>
+            <li>Recommended next steps</li>
+            <li>30-min walkthrough call</li>
+          </ul>
+          <div class="audit-meta">~1 week from intake to delivered report</div>
+        </div>
+        <button type="button" class="btn btn-primary audit-cta">Book a Readiness Check <span class="arrow">-></span></button>
+      </div>
+
+      <div class="audit-card audit-card--dark reveal">
+        <div class="audit-tier">Tier 2 — Full depth</div>
+        <div class="audit-card-body">
+          <h3>AI Blueprint</h3>
+          <div class="audit-price">$2,997 <span>+ GST</span></div>
+          <p class="audit-desc" style="color:rgba(247,248,244,0.7);font-size:0.95rem;">A complete map of your business — every department, every workflow, every system. We model the ROI on every opportunity so you know what each automation is worth before spending a dollar on it.</p>
+          <div class="audit-deliverable-label" style="margin-top:0.5rem;">What you get</div>
+          <ul class="audit-deliverables">
+            <li>Findings presentation (live walkthrough, in-person or remote)</li>
+            <li>Every AI opportunity mapped and explained</li>
+            <li>ROI model — hours saved, $ saved, payback period per item</li>
+            <li>Prioritised implementation roadmap</li>
+            <li>Recommended tools and approach</li>
+          </ul>
+          <div class="audit-meta">As little as 2 weeks from intake to presentation</div>
+        </div>
+        <button type="button" class="btn audit-cta" style="background:var(--green);color:var(--green-dark);">Book an AI Blueprint <span class="arrow">-></span></button>
+      </div>
+
+    </div>
+    <div class="audit-credit reveal">
+      <span class="audit-credit-icon">→</span>
+      <div>
+        <strong>Readiness Check fee credited in full.</strong> Book your AI Blueprint within 30 days and your $797 comes straight off the price — the Readiness Check pays for itself.
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Build</span>
+      <h2 class="display">One agent.<br>One problem.<br>Real results.</h2>
+      <p class="alt-head">Our most common engagement — a focused AI agent that solves one costly problem in your business.</p>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-card-left">
+        <span class="project-badge">Quickstart</span>
+        <h3>AI Agent Quickstart</h3>
+        <p>One focused AI agent, built and integrated into your business. Trained on your data, connected to your existing tools, and handed over with everything your team needs to run it.</p>
+        <p style="margin-top:0.5rem;">Typical timeline: 2–4 weeks from kickoff to delivery.</p>
+        <button type="button" class="btn btn-primary" style="align-self:flex-start;margin-top:0.75rem;" data-open-modal="book">Let's talk <span class="arrow">-></span></button>
+      </div>
+      <div class="project-card-right">
+        <div class="audit-deliverable-label">What you get</div>
+        <ul class="project-deliverables">
+          <li>AI agent trained on your business data</li>
+          <li>Integrated into one system (email, CRM, Slack, website, etc.)</li>
+          <li>Training documentation — how to use, update, and maintain</li>
+          <li>1-hour handover session with your team</li>
+        </ul>
+        <div class="project-meta" style="margin-top:0.5rem;">Common uses: customer support, lead qualification, content generation, document processing</div>
+      </div>
+    </div>
+
+    <div class="bigger-callout reveal">
+      <span style="font-size:1.2rem;flex-shrink:0;">⚡</span>
+      <div>
+        <strong>Need something bigger?</strong> We also deliver multi-agent automation systems and full AI strategy engagements for businesses ready for a deeper transformation. <a href="#" data-open-modal="book" style="color:var(--green-dark);font-weight:700;text-decoration:none;">Get in touch to discuss. →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="retainer">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Grow</span>
+      <h2 class="display">Keep your AI<br>working harder.</h2>
+      <p class="alt-head">AI isn't set-and-forget. Models drift, APIs change, and your business evolves. Ongoing support means your tools stay effective without you having to think about it.</p>
+    </div>
+    <div class="retainer-tiers">
+      <div class="retainer-tier reveal">
+        <div class="retainer-tier-name">Essential</div>
+        <h3>Single agent support</h3>
+        <p>Monitoring, optimisation, and up to 5 hours of support per month. Right for businesses running one AI tool post-Quickstart.</p>
+      </div>
+      <div class="retainer-tier reveal">
+        <div class="retainer-tier-name">Growth</div>
+        <h3>Multi-agent support</h3>
+        <p>Ongoing management of a connected agent system — including expansion, integration maintenance, and up to 10 hours support per month.</p>
+      </div>
+      <div class="retainer-tier reveal">
+        <div class="retainer-tier-name">Intelligence Unit</div>
+        <h3>Full agent team</h3>
+        <p>Priority support, performance reporting, and new agents included — for businesses running AI across multiple departments.</p>
+      </div>
+    </div>
+    <div style="margin-top:2rem;" class="reveal">
+      <button type="button" class="btn btn-primary" data-open-modal="book">Talk about ongoing support <span class="arrow">-></span></button>
+    </div>
+  </div>
+</section>
+
+<section id="cta">
+  <div class="wrap">
+    <span class="eyebrow">Get started</span>
+    <h2 class="display">Not sure where<br>to start?</h2>
+    <p class="alt-head">Book a free 30-min call. We'll find one thing AI can fix in your business — no pitch, no obligation.</p>
+    <div class="cta-actions">
+      <button type="button" class="btn btn-dark" data-open-modal="book">Book a free call <span class="arrow">-></span></button>
+      <a href="/" class="btn btn-secondary">Back to main site</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <a href="/" class="logo">AiLabs<span class="logo-dot"></span></a>
+  <nav class="footer-legal" aria-label="Legal">
+    <a href="privacy.html">Privacy</a>
+    <a href="terms.html">Terms</a>
+    <a href="data-deletion.html">Data deletion</a>
+  </nav>
+  <p>© 2026 AiLabs · New Zealand · hello@ailabs.co.nz</p>
+</footer>
+
+<div id="bookModal" class="modal" hidden role="dialog" aria-modal="true" aria-labelledby="bookModalTitle">
+  <div class="modal-backdrop" data-modal-close></div>
+  <div class="modal-panel">
+    <button type="button" class="modal-close" data-modal-close aria-label="Close">×</button>
+    <div class="modal-head">
+      <h2 id="bookModalTitle">Get in touch</h2>
+      <p id="bookModalSubtitle">Drop your details and we'll check out your site. No pitch, no pressure.</p>
+    </div>
+    <form class="contact-form" id="contactForm">
+      <input id="contactHoneypot" name="website2" tabindex="-1" autocomplete="off"
+             style="position:absolute;left:-9999px;height:0;width:0;opacity:0;" aria-hidden="true" />
+      <div>
+        <label for="contactName">Your name</label>
+        <input id="contactName" type="text" placeholder="e.g. Sarah" autocomplete="name" required maxlength="100" />
+      </div>
+      <div>
+        <label for="contactEmail">Email</label>
+        <input id="contactEmail" type="email" placeholder="e.g. sarah@example.co.nz" autocomplete="email" required maxlength="254" />
+      </div>
+      <div>
+        <label for="contactWebsite">Company website</label>
+        <input id="contactWebsite" type="url" placeholder="e.g. https://example.co.nz" autocomplete="url" required maxlength="500" />
+      </div>
+      <div>
+        <label for="contactCostSavings">What are you trying to save costs on? (optional)</label>
+        <textarea id="contactCostSavings" placeholder="e.g. manual data entry, customer support, reporting..." maxlength="2000"></textarea>
+      </div>
+      <div class="cf-turnstile" data-sitekey="0x4AAAAAADELfsxMfg5_wYaR" data-theme="light"></div>
+      <div class="form-actions">
+        <button type="button" class="btn btn-primary" id="contactSend">Send message <span class="arrow">-></span></button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+(function () {
+  const modal = document.getElementById('bookModal');
+  let lastTrigger = null;
+
+  function openModal(trigger) {
+    lastTrigger = trigger || null;
+    modal.hidden = false;
+    document.body.classList.add('modal-open');
+    setTimeout(() => document.getElementById('contactName').focus(), 0);
+  }
+
+  const WEBHOOK_URL = 'https://n8n.tovizi.com/webhook/ailabs-contact';
+  const sendBtn = document.getElementById('contactSend');
+  let lastSent = 0;
+
+  sendBtn.addEventListener('click', async () => {
+    const name = (document.getElementById('contactName').value || '').trim();
+    const email = (document.getElementById('contactEmail').value || '').trim();
+    const website = (document.getElementById('contactWebsite').value || '').trim();
+    const costSavings = (document.getElementById('contactCostSavings').value || '').trim();
+    const cfToken = (document.querySelector('[name="cf-turnstile-response"]')?.value || '').trim();
+
+    if (document.getElementById('contactHoneypot').value) return;
+
+    if (!cfToken) {
+      const existing = document.getElementById('contactForm').querySelector('.form-error');
+      if (existing) existing.remove();
+      const errEl = document.createElement('p');
+      errEl.className = 'form-error';
+      errEl.style.cssText = 'color:#c0392b;font-size:0.9rem;margin-top:0.5rem;';
+      errEl.textContent = 'Please complete the security check before sending.';
+      sendBtn.parentElement.after(errEl);
+      return;
+    }
+
+    if (Date.now() - lastSent < 30_000) return;
+
+    if (!name || !email || !website) {
+      document.getElementById('contactForm').querySelectorAll('input').forEach(el => el.reportValidity());
+      return;
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      document.getElementById('contactEmail').setCustomValidity('Please enter a valid email address.');
+      document.getElementById('contactEmail').reportValidity();
+      document.getElementById('contactEmail').setCustomValidity('');
+      return;
+    }
+
+    let websiteUrl = website;
+    if (!/^https?:\/\//i.test(websiteUrl)) websiteUrl = 'https://' + websiteUrl;
+
+    let websiteOk = false;
+    try { websiteOk = ['http:', 'https:'].includes(new URL(websiteUrl).protocol); } catch {}
+    if (!websiteOk) {
+      document.getElementById('contactWebsite').setCustomValidity('Please enter a valid website URL.');
+      document.getElementById('contactWebsite').reportValidity();
+      document.getElementById('contactWebsite').setCustomValidity('');
+      return;
+    }
+
+    sendBtn.disabled = true;
+    sendBtn.innerHTML = 'Sending…';
+
+    try {
+      const res = await fetch(WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, website: websiteUrl, costSavings, cfToken }),
+      });
+      if (!res.ok) throw new Error('Server error');
+
+      lastSent = Date.now();
+      document.getElementById('bookModalTitle').hidden = true;
+      document.getElementById('bookModalSubtitle').hidden = true;
+      document.getElementById('contactForm').innerHTML =
+        '<div class="success-state">' +
+        '<svg class="success-check" viewBox="0 0 64 64" aria-hidden="true">' +
+        '<circle cx="32" cy="32" r="30"/>' +
+        '<polyline points="20,34 28,42 44,24"/>' +
+        '</svg>' +
+        '<h3 style="font-family:var(--display);font-weight:900;font-size:1.6rem;margin-bottom:0.5rem;">Detected incoming message. Beep boop beep. Notifying the human.</h3>' +
+        '<p style="color:var(--ink-soft);">We\'ll come back with ideas that fit your business. Talk soon.</p>' +
+        '</div>';
+    } catch (err) {
+      sendBtn.disabled = false;
+      sendBtn.innerHTML = 'Send message <span class="arrow">→</span>';
+      const existing = document.getElementById('contactForm').querySelector('.form-error');
+      if (existing) existing.remove();
+      const errEl = document.createElement('p');
+      errEl.className = 'form-error';
+      errEl.style.cssText = 'color:#c0392b;font-size:0.9rem;margin-top:0.5rem;';
+      errEl.textContent = 'Something went wrong. Please try again or email hello@ailabs.co.nz directly.';
+      sendBtn.parentElement.after(errEl);
+    }
+  });
+
+  function closeModal() {
+    modal.hidden = true;
+    document.body.classList.remove('modal-open');
+    if (lastTrigger && typeof lastTrigger.focus === 'function') lastTrigger.focus();
+  }
+
+  document.addEventListener('click', (e) => {
+    const opener = e.target.closest('[data-open-modal="book"]');
+    if (opener) { e.preventDefault(); openModal(opener); return; }
+    if (e.target.closest('[data-modal-close]')) { closeModal(); }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !modal.hidden) closeModal();
+    if (e.key === 'Tab' && !modal.hidden) {
+      const focusables = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+      if (!focusables.length) return;
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  });
+
+  document.getElementById('contactForm').addEventListener('submit', e => e.preventDefault());
+
+  document.querySelectorAll('.audit-cta').forEach(el => {
+    el.addEventListener('click', e => { e.preventDefault(); openModal(el); });
+  });
+
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.documentElement.classList.add('js-reveal');
+    const reveals = document.querySelectorAll('.reveal');
+    const show = (el, i = 0) => setTimeout(() => el.classList.add('visible'), i * 60);
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) { show(entry.target, i); io.unobserve(entry.target); }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -5% 0px' });
+    reveals.forEach(el => io.observe(el));
+    setTimeout(() => reveals.forEach(el => el.classList.add('visible')), 2500);
+  }
+}());
+</script>
+
+</body>
+</html>
