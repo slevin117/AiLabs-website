@@ -133,9 +133,55 @@
       max-width: 50ch;
     }
 
+    /* Filter bar */
+    .filter-bar {
+      padding: 2rem 0 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+    .filter-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      align-items: center;
+    }
+    .filter-label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
+      color: var(--ink-dim);
+      min-width: 3.5rem;
+    }
+    .filter-btn {
+      font-family: var(--mono);
+      font-size: 0.67rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--ink-soft);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 9999px;
+      padding: 0.32rem 0.75rem;
+      cursor: pointer;
+      transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+    }
+    .filter-btn:hover {
+      border-color: var(--green-dark);
+      color: var(--green-dark);
+    }
+    .filter-btn.active {
+      background: var(--green);
+      color: var(--green-dark);
+      border-color: var(--green);
+    }
+
     /* Article grid */
     .blog-grid {
-      padding: 4rem 0 6rem;
+      padding: 2.5rem 0 6rem;
       display: grid;
       grid-template-columns: 1fr;
       gap: 2rem;
@@ -188,6 +234,17 @@
     .article-meta span::before { content: '·'; margin-right: 0.5rem; }
     .article-meta span:first-child::before { content: ''; margin: 0; }
 
+    .no-results {
+      display: none;
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 5rem 0;
+      color: var(--ink-dim);
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+    }
+
     /* Footer */
     footer {
       border-top: 1px solid var(--border);
@@ -225,8 +282,27 @@
     <p>Practical guides for NZ businesses that want results, not buzzwords.</p>
   </header>
 
+  <div class="filter-bar">
+    <div class="filter-row">
+      <span class="filter-label">Sort</span>
+      <button class="filter-btn active" data-sort="featured">Featured</button>
+      <button class="filter-btn" data-sort="latest">Latest</button>
+      <button class="filter-btn" data-sort="oldest">Oldest</button>
+    </div>
+    <div class="filter-row">
+      <span class="filter-label">Topic</span>
+      <button class="filter-btn active" data-topic="all">All</button>
+      <button class="filter-btn" data-topic="getting-started">Getting started</button>
+      <button class="filter-btn" data-topic="ai-agents">AI Agents</button>
+      <button class="filter-btn" data-topic="ai-strategy">AI Strategy</button>
+      <button class="filter-btn" data-topic="efficiency">Efficiency</button>
+      <button class="filter-btn" data-topic="automation">Automation</button>
+      <button class="filter-btn" data-topic="chatgpt">ChatGPT</button>
+    </div>
+  </div>
+
   <div class="blog-grid">
-    <a href="/blog/what-you-get-from-free-ai-strategy-call-nz/" class="article-card">
+    <a href="/blog/what-you-get-from-free-ai-strategy-call-nz/" class="article-card" data-tag="getting-started" data-date="2026-05-02">
       <span class="article-tag">Getting started</span>
       <h2>What you'll get from a free 30-minute AI strategy call</h2>
       <p>Most NZ business owners think AI is a six-month project. In 30 minutes, we'll tell you where it fits in your business, what it'd actually cost, and whether now is the right time.</p>
@@ -236,7 +312,7 @@
       </div>
     </a>
 
-    <a href="/blog/ai-agent-24-7-bookings-faqs-nz-business/" class="article-card">
+    <a href="/blog/ai-agent-24-7-bookings-faqs-nz-business/" class="article-card" data-tag="ai-agents" data-date="2026-05-02" data-featured="true">
       <span class="article-tag">AI Agents</span>
       <h2>How an AI agent keeps your NZ business open 24/7</h2>
       <p>Every evening and weekend, NZ service businesses miss bookings they'll never know about. An AI agent handles the response — instantly, every time — without adding headcount.</p>
@@ -246,7 +322,7 @@
       </div>
     </a>
 
-    <a href="/blog/ai-adoption-gap-nz-business-2026/" class="article-card">
+    <a href="/blog/ai-adoption-gap-nz-business-2026/" class="article-card" data-tag="ai-strategy" data-date="2026-05-02">
       <span class="article-tag">AI Strategy</span>
       <h2>Why the top 20% of NZ businesses are pulling ahead with AI</h2>
       <p>The top 20% of AI adopters are generating 7.2× more returns than average and capturing 72% of all AI economic value. Here's what they're doing differently.</p>
@@ -256,7 +332,7 @@
       </div>
     </a>
 
-    <a href="/blog/how-ai-automation-saves-time-nz-small-business/" class="article-card">
+    <a href="/blog/how-ai-automation-saves-time-nz-small-business/" class="article-card" data-tag="efficiency" data-date="2026-05-02" data-featured="true">
       <span class="article-tag">Efficiency</span>
       <h2>How AI automation saves NZ businesses 5+ hours per employee, per week</h2>
       <p>That's not a headline stat — it's what happens when you remove the repetitive work that piles up between the tasks that actually matter. Here's where those hours go.</p>
@@ -266,7 +342,7 @@
       </div>
     </a>
 
-    <a href="/blog/ai-automation-nz-tradies/" class="article-card">
+    <a href="/blog/ai-automation-nz-tradies/" class="article-card" data-tag="ai-agents" data-date="2026-04-29">
       <span class="article-tag">AI Agents</span>
       <h2>AI automation for NZ tradies: where to start</h2>
       <p>You're on the tools all day. Here's how AI handles the after-hours enquiries, quote follow-ups, and invoice chasers so you don't have to.</p>
@@ -276,7 +352,7 @@
       </div>
     </a>
 
-    <a href="/blog/is-your-nz-business-ready-for-ai/" class="article-card">
+    <a href="/blog/is-your-nz-business-ready-for-ai/" class="article-card" data-tag="getting-started" data-date="2026-04-29">
       <span class="article-tag">Getting started</span>
       <h2>5 signs your NZ business is ready for AI (and what to do next)</h2>
       <p>Not sure if AI is right for your business yet? Run through these five signs — most NZ SMBs hit at least three of them before they realise it.</p>
@@ -286,7 +362,7 @@
       </div>
     </a>
 
-    <a href="/blog/ai-agents-answer-customer-questions-nz-small-business/" class="article-card">
+    <a href="/blog/ai-agents-answer-customer-questions-nz-small-business/" class="article-card" data-tag="ai-agents" data-date="2026-04-27">
       <span class="article-tag">AI Agents</span>
       <h2>How AI agents can answer customer questions 24/7</h2>
       <p>NZ small businesses are losing leads every evening and weekend because nobody's there to answer. Here's how an AI agent fixes that without adding headcount.</p>
@@ -296,7 +372,7 @@
       </div>
     </a>
 
-    <a href="/blog/why-your-teams-chatgpt-habit-isnt-showing-up-on-the-bottom-line/" class="article-card">
+    <a href="/blog/why-your-teams-chatgpt-habit-isnt-showing-up-on-the-bottom-line/" class="article-card" data-tag="efficiency" data-date="2026-04-25">
       <span class="article-tag">Efficiency</span>
       <h2>Why your team's ChatGPT habit isn't showing up on the bottom line</h2>
       <p>Most NZ businesses use AI for ad-hoc tasks, creating 'micro-wins' that never scale. Here is how to shift from manual prompting to systemic automation.</p>
@@ -306,7 +382,7 @@
       </div>
     </a>
 
-    <a href="/blog/where-to-start-with-ai-nz-small-business/" class="article-card">
+    <a href="/blog/where-to-start-with-ai-nz-small-business/" class="article-card" data-tag="getting-started" data-date="2026-04-20" data-featured="true">
       <span class="article-tag">Getting started</span>
       <h2>Where to start with AI if you run a small NZ business</h2>
       <p>Most AI advice is written for tech companies with big teams. Here's what actually makes sense if you're a small NZ operator.</p>
@@ -316,6 +392,7 @@
       </div>
     </a>
 
+    <p class="no-results">No posts match that filter yet — more coming soon.</p>
   </div>
 </div>
 
@@ -328,6 +405,53 @@
   </nav>
   <p>© 2026 AiLabs · New Zealand · hello@ailabs.co.nz</p>
 </footer>
+
+<script>
+(function () {
+  var grid = document.querySelector('.blog-grid');
+  var cards = Array.from(grid.querySelectorAll('.article-card'));
+  var noResults = grid.querySelector('.no-results');
+  var activeSort = 'featured';
+  var activeTopic = 'all';
+
+  function applyFilters() {
+    var visible = cards.filter(function (c) {
+      return activeTopic === 'all' || c.dataset.tag === activeTopic;
+    });
+
+    visible.sort(function (a, b) {
+      if (activeSort === 'latest') return b.dataset.date.localeCompare(a.dataset.date);
+      if (activeSort === 'oldest') return a.dataset.date.localeCompare(b.dataset.date);
+      var af = a.dataset.featured === 'true' ? 0 : 1;
+      var bf = b.dataset.featured === 'true' ? 0 : 1;
+      if (af !== bf) return af - bf;
+      return b.dataset.date.localeCompare(a.dataset.date);
+    });
+
+    cards.forEach(function (c) { c.style.display = 'none'; });
+    visible.forEach(function (c) { c.style.display = ''; grid.appendChild(c); });
+    noResults.style.display = visible.length === 0 ? 'block' : 'none';
+  }
+
+  document.querySelectorAll('[data-sort]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('[data-sort]').forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      activeSort = btn.dataset.sort;
+      applyFilters();
+    });
+  });
+
+  document.querySelectorAll('[data-topic]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('[data-topic]').forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      activeTopic = btn.dataset.topic;
+      applyFilters();
+    });
+  });
+}());
+</script>
 
 </body>
 </html>
